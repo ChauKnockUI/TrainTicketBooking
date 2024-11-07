@@ -1,0 +1,166 @@
+.toggle-button {
+    -fx-background-color: white; /* Nền trắng cho ô hiển thị ngày */
+    -fx-border-color: #BDBDBD; /* Màu viền xám nhạt */
+    -fx-border-radius: 10px; /* Bo tròn góc */
+    -fx-background-radius: 10px; /* Bo tròn nền */
+    -fx-padding: 5px; /* Tạo khoảng cách giữa viền và nội dung */
+    -fx-min-width: 60px; /* Đặt chiều rộng tối thiểu */
+    -fx-min-height: 30px; /* Đặt chiều cao tối thiểu */
+    -fx-alignment: center; /* Căn chỉnh nội dung chính giữa */
+    -fx-font-size: 14px; /* Kích thước chữ phù hợp */
+    -fx-text-fill: black; /* Màu chữ đen */
+}
+/* Hiệu ứng khi hover qua ô ngày */
+.toggle-button:hover {
+    -fx-background-color: #F5F5F5; /* Nền xám nhẹ khi hover */
+}
+.toggle-button:selected {
+    -fx-background-color: #007bff; /* Màu nền xanh khi được chọn */
+    -fx-text-fill: white; /* Màu chữ trắng khi được chọn */
+}
+.toggle-button .text {
+    -fx-text-alignment: center;
+}
+
+
+.primary-button{
+    -fx-background-color: #2196F3;
+    -fx-background-radius: 12px;
+    -fx-border-radius: 12px;
+    -fx-cursor: hand;
+
+}
+/* CSS cho nút button-navigator */
+.button-navigator {
+    -fx-background-color: transparent; /* Nền trong suốt */
+    -fx-text-fill: #2196F3; /* Màu xanh dương */
+    -fx-font-size: 24px; /* Kích thước font lớn */
+    -fx-padding: 8px; /* Thêm padding để nút lớn hơn */
+    -fx-border-color: transparent; /* Loại bỏ đường viền */
+    -fx-cursor: hand; /* Đổi thành con trỏ bàn tay khi di chuột qua */
+}
+
+/* Hiệu ứng khi hover qua nút */
+.button-navigator:hover {
+    -fx-text-fill: #1976D2; /* Màu xanh đậm hơn khi hover */
+}
+
+/* Hiệu ứng khi nhấn nút */
+.button-navigator:pressed {
+    -fx-text-fill: #0D47A1; /* Màu xanh đậm nhất khi nhấn */
+}
+
+
+.toggle-button:selected {
+    -fx-background-color: #007bff;
+    -fx-text-fill: white;
+}
+.ad-button{
+    -fx-background-color:  rgba(0, 0, 0, 0.15);
+    -fx-font-weight:  bold;
+    -fx-font-size: 16px;
+    -fx-effect:  dropshadow(gaussian, black, 3, 0, 0, 1);
+    -fx-alignment:  center-left;
+    -fx-padding: 30px;
+}
+.imageLabel{
+    -fx-background-radius: 15px;
+    -fx-border-radius: 15px;
+    -fx-border-color: black;
+    -fx-border-width: 1px;
+}
+
+
+/*carriage button */
+.carriage-button {
+    -fx-background-color: transparent;
+    -fx-font-family: "Segoe UI Bold";
+    -fx-border-color: #007bff;
+    -fx-border-width: 2px;
+    -fx-border-radius: 50px;
+    -fx-background-radius: 50px;
+    -fx-text-fill: #1E90FF;
+    -fx-padding: 5px 15px;
+    -fx-font-size: 14px;
+    -fx-cursor: hand;
+}
+
+.carriage-button:selected, .button.selected {
+    -fx-background-color: #007bff;
+    -fx-text-fill: white;
+}
+
+.carriage-button:hover {
+    -fx-background-color: #1E90FF;
+    -fx-text-fill: white;
+}
+/* TabPane mặc định */
+.tab-pane .tab-header-area {
+    -fx-background-color: transparent; /* Nền trong suốt để không có đường viền */
+}
+
+/* Định dạng cho từng tab */
+.tab-pane .tab {
+    -fx-background-color: white; /* Nền trắng cho các tab không được chọn */
+    -fx-background-radius: 20px; /* Bo tròn góc */
+    -fx-padding: 5px 15px; /* Khoảng cách bên trong tab */
+    -fx-border-color: #007bff; /* Đường viền màu xanh */
+    -fx-border-radius: 20px; /* Bo tròn góc cho viền */
+    -fx-border-width: 1px; /* Độ rộng đường viền */
+    -fx-text-fill: #007bff; /* Màu chữ xanh */
+    -fx-font-weight: bold; /* Chữ in đậm */
+    -fx-cursor: hand; /* Con trỏ tay khi hover qua tab */
+}
+
+/* Định dạng cho tab được chọn */
+.tab-pane .tab:selected {
+    -fx-background-color: #007bff; /* Nền xanh cho tab được chọn */
+    -fx-text-fill: white; /* Màu chữ trắng cho tab được chọn */
+}
+
+/* Hiệu ứng hover cho tab */
+.tab-pane .tab:hover {
+    -fx-background-color: #BBDEFB; /* Nền xanh nhạt khi hover */
+}
+
+/* CSS cho ghế (ToggleButton) */
+.seat-toggle-button {
+    -fx-background-color: #E9EFFF; /* Màu nền mặc định */
+    -fx-padding: 10px;
+    -fx-border-radius: 5px;
+    -fx-background-radius: 5px;
+    -fx-alignment: center;
+    -fx-font-size: 14px;
+    -fx-text-fill: #424242; /* Màu chữ mặc định */
+    -fx-min-width: 50px;
+    -fx-min-height: 30px;
+    -fx-border-color: #BDBDBD; /* Màu viền mặc định */
+    -fx-margin: 5px;
+}
+
+/* Hiệu ứng khi ghế được chọn */
+.seat-toggle-button:selected {
+    -fx-background-color: #007bff; /* Màu nền khi được chọn */
+    -fx-text-fill: white; /* Màu chữ trắng khi được chọn */
+    -fx-border-color: #007bff; /* Màu viền cùng màu với nền */
+}
+.transparent-border-button {
+    -fx-background-color: transparent;  /* Nền trong suốt */
+    -fx-border-color: #2196F3;          /* Đường viền màu xanh */
+    -fx-border-width: 1px;              /* Độ dày của đường viền */
+    -fx-border-radius: 8px;             /* Bo tròn đường viền */
+    -fx-text-fill: #2196F3;             /* Màu chữ xanh */
+    -fx-padding: 5px 10px;              /* Khoảng cách giữa viền và nội dung */
+    -fx-cursor: hand;                   /* Con trỏ chuột thành bàn tay khi hover */
+    -fx-font-weight: bold;              /* Chữ đậm */
+}
+
+/* Hiệu ứng khi hover */
+.transparent-border-button:hover {
+    -fx-background-color: rgba(33, 150, 243, 0.1);  /* Nền xanh nhạt khi hover */
+}
+
+/* Hiệu ứng khi nhấn */
+.transparent-border-button:pressed {
+    -fx-background-color: rgba(33, 150, 243, 0.2);  /* Nền xanh đậm hơn khi nhấn */
+}
