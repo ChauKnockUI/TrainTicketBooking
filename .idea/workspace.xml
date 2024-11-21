@@ -5,51 +5,41 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="de87072b-561a-4f06-a61a-e967e7e098ce" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/.name" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/encodings.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/uiDesigner.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.mvn/wrapper/maven-wrapper.jar" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.mvn/wrapper/maven-wrapper.properties" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/mvnw" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/mvnw.cmd" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/qodana.sarif.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/qodana.yaml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/trainticketbooking/DateTimeUtil.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/trainticketbooking/HelloController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/trainticketbooking/Train.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/trainticketbooking/TrainBookingController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/trainticketbooking/TrainListCell.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/trainticketbooking/TrainListController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/trainticketbooking/TrainTicketApplication.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/comp/Rmi/model/Carriage.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/comp/Rmi/model/Price.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/comp/Rmi/model/Seat.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/comp/Rmi/model/Station.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/comp/Rmi/model/Train.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/comp/Rmi/model/TrainCarriage.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/comp/Rmi/model/Tuyen.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/comp/Rmi/rmi/CarriageService.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/comp/Rmi/rmi/PriceService.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/comp/Rmi/rmi/SeatService.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/comp/Rmi/rmi/StationService.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/comp/Rmi/rmi/TrainService.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/comp/Rmi/rmi/TuyenService.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/module-info.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/com/example/trainticketbooking/TrainBooking.fxml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/com/example/trainticketbooking/css.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/com/example/trainticketbooking/img/Frame 31.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/com/example/trainticketbooking/img/Metroway - Train Ticket booking website (Community).zip" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/com/example/trainticketbooking/img/Metroway - Train Ticket booking website (Community)/Plugin/Metroway.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/com/example/trainticketbooking/img/Metroway - Train Ticket booking website (Community)/Plugin/bia-ngang-kham-pha-ve-dep-thuy-si-mua-dong-va-hoa-minh-trong-buc-tranh-tuyet-xinh-dep-huyen.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/com/example/trainticketbooking/img/Metroway - Train Ticket booking website (Community)/Plugin/holiday.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/com/example/trainticketbooking/img/Metroway - Train Ticket booking website (Community)/Plugin/list (1).png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/com/example/trainticketbooking/img/Metroway - Train Ticket booking website (Community)/Plugin/list.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/com/example/trainticketbooking/search-trains.fxml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/trainticketbooking/LoginController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/comp/Main.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/comp/Rmi/model/CTHD.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/comp/Rmi/model/HoaDon.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/comp/Rmi/rmi/CarriageServiceImpl.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/comp/Rmi/rmi/HoaDonService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/comp/Rmi/rmi/HoaDonServiceImpl.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/comp/Rmi/rmi/LoginService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/comp/Rmi/rmi/LoginServiceImpl.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/comp/Rmi/rmi/PriceServiceImpl.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/comp/Rmi/rmi/SeatServiceImpl.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/comp/Rmi/rmi/StationServiceImpl.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/comp/Rmi/rmi/TicketService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/comp/Rmi/rmi/TicketServiceImpl.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/comp/Rmi/rmi/TrainServiceImpl.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/comp/Rmi/rmi/TuyenServiceImpl.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/comp/trainticketserver/DAO/DatabaseConnection.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/comp/trainticketserver/DAO/HoaDonDAO.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/comp/trainticketserver/DAO/NhanVienDAO.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/comp/trainticketserver/DAO/PriceDAO.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/comp/trainticketserver/DAO/SeatDAO.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/comp/trainticketserver/DAO/StationDAO.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/comp/trainticketserver/DAO/TicketDAO.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/comp/trainticketserver/DAO/ToaDAO.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/comp/trainticketserver/DAO/TrainDAO.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/comp/trainticketserver/DAO/TuyenDAO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/trainticketbooking/TrainBookingController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/trainticketbooking/TrainBookingController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/trainticketbooking/TrainListCell.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/trainticketbooking/TrainListCell.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/trainticketbooking/TrainListController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/trainticketbooking/TrainListController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/trainticketbooking/TrainTicketApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/trainticketbooking/TrainTicketApplication.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/comp/Rmi/rmi/TrainService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/comp/Rmi/rmi/TrainService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/module-info.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/module-info.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/com/example/trainticketbooking/TrainBooking.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/com/example/trainticketbooking/TrainBooking.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/com/example/trainticketbooking/search-trains.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/com/example/trainticketbooking/search-trains.fxml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -87,24 +77,29 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;Application.HelloApplication.executor&quot;: &quot;Run&quot;,
-    &quot;Application.TrainTicketApplication.executor&quot;: &quot;Run&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;master&quot;,
-    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
-    &quot;last_opened_file_path&quot;: &quot;D:/LapTrinhMang/TrainTicketBooking/src/main/java&quot;,
-    &quot;list.type.of.created.stylesheet&quot;: &quot;CSS&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;run.code.analysis.last.selected.profile&quot;: &quot;pProject Default&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "Application.HelloApplication.executor": "Run",
+    "Application.Main.executor": "Run",
+    "Application.TrainTicketApplication.executor": "Run",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "git-widget-placeholder": "master",
+    "kotlin-language-version-configured": "true",
+    "last_opened_file_path": "D:/LapTrinhMang/TrainTicketBooking/src/main/java",
+    "list.type.of.created.stylesheet": "CSS",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "project.structure.last.edited": "Libraries",
+    "project.structure.proportion": "0.0",
+    "project.structure.side.proportion": "0.0",
+    "run.code.analysis.last.selected.profile": "pProject Default",
+    "settings.editor.selected.configurable": "preferences.JavaFX",
+    "vue.rearranger.settings.migration": "true"
   }
-}</component>
+}]]></component>
   <component name="QodanaReportsService">
     <option name="descriptions">
       <ReportDescription localRun="true" path="C:\Users\LENOVO\AppData\Local\Temp\qodana_output\qodana.sarif.json" reportGuid="4e18d0bd-54a5-4f9c-be98-59ddf17779a5" reportId="TrainTicketBooking/qodana/2024-10-19" />
@@ -118,11 +113,24 @@
       <recent name="D:\LapTrinhMang\TrainTicketBooking\src\main\java" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
-      <recent name="D:\LapTrinhMang\TrainTicketBooking\src\main\java\comp\Rmi" />
       <recent name="D:\LapTrinhMang\TrainTicketBooking\src\main\java" />
+      <recent name="D:\LapTrinhMang\TrainTicketBooking\src\main\java\comp\Rmi" />
     </key>
   </component>
-  <component name="RunManager">
+  <component name="RunManager" selected="Application.TrainTicketApplication">
+    <configuration name="Main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="comp.Main" />
+      <module name="TrainTicketBooking" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="comp.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <configuration name="TrainTicketApplication" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="com.example.trainticketbooking.TrainTicketApplication" />
       <module name="TrainTicketBooking" />
@@ -139,6 +147,7 @@
     <recent_temporary>
       <list>
         <item itemvalue="Application.TrainTicketApplication" />
+        <item itemvalue="Application.Main" />
       </list>
     </recent_temporary>
   </component>
@@ -179,11 +188,22 @@
       <workItem from="1730726971852" duration="3157000" />
       <workItem from="1730731653719" duration="4634000" />
       <workItem from="1730736694981" duration="3086000" />
-      <workItem from="1730967300740" duration="1046000" />
+      <workItem from="1730967300740" duration="3356000" />
+      <workItem from="1731166240601" duration="3889000" />
+      <workItem from="1731213875611" duration="2228000" />
+      <workItem from="1731372238814" duration="3000" />
+      <workItem from="1731372293328" duration="610000" />
+      <workItem from="1731752717980" duration="1768000" />
+      <workItem from="1731857767834" duration="4160000" />
+      <workItem from="1732164270821" duration="2671000" />
     </task>
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
+  </component>
+  <component name="XSLT-Support.FileAssociations.UIState">
+    <expand />
+    <select />
   </component>
 </project>

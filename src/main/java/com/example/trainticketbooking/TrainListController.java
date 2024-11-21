@@ -1,9 +1,9 @@
 package com.example.trainticketbooking;
 
 import comp.Rmi.model.Station;
+import comp.Rmi.model.Train;
 import comp.Rmi.rmi.StationService;
 import comp.Rmi.rmi.TrainService;
-import comp.Rmi.model.Train;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -13,14 +13,11 @@ import javafx.scene.control.ListCell;
 import javafx.scene.control.ListView;
 import javafx.util.StringConverter;
 
-import java.rmi.AccessException;
-import java.rmi.Naming;
 import java.rmi.NotBoundException;
 import java.rmi.RemoteException;
 import java.rmi.registry.LocateRegistry;
 import java.rmi.registry.Registry;
 import java.sql.Date;
-import java.text.SimpleDateFormat;
 import java.util.List;
 
 public class TrainListController {
@@ -31,6 +28,11 @@ public class TrainListController {
     private ComboBox<Station> fromComboBox;
     @FXML
     private ComboBox<Station> toComboBox;
+    public class GlobalConfig {
+
+        // Biến IP toàn cục
+        public static String serverIP = "172.20.10.4";
+    }
 
 
     @FXML
@@ -46,11 +48,12 @@ public class TrainListController {
 //            System.out.println("-------------------------");
 //        }
     }
+
     public void initialize() {
         System.out.println("Initialize method called!");
         ObservableList<Train> trainList;
         try {
-            Registry registry = LocateRegistry.getRegistry("172.20.10.5", 1099);
+            Registry registry = LocateRegistry.getRegistry(GlobalConfig.serverIP, 1099);
             TrainService trainService = (TrainService) registry.lookup("TrainService");
             // Tạo danh sách chuyến tàu
 
@@ -79,7 +82,7 @@ public class TrainListController {
         trainListView.setCellFactory(listView -> new TrainListCell());
         try {
             // Kết nối tới server RMI
-            Registry registry = LocateRegistry.getRegistry("172.20.10.5", 1099);
+            Registry registry = LocateRegistry.getRegistry(GlobalConfig.serverIP, 1099);
             StationService stationService = (StationService) registry.lookup("StationService");
 
             // Gọi getAllStations() để lấy danh sách trạm
@@ -154,7 +157,7 @@ public class TrainListController {
     private void onSearchButtonClick(ActionEvent event) {
         try {
             // Kết nối tới server RMI
-            Registry registry = LocateRegistry.getRegistry("172.20.10.5", 1099);
+            Registry registry = LocateRegistry.getRegistry(GlobalConfig.serverIP, 1099);
             TrainService trainService = (TrainService) registry.lookup("TrainService");
 
             // Lấy thông tin từ các trường đầu vào (giả sử đã có các trường `departureDate`, `departureStationId`, `destinationStationId`)
@@ -173,7 +176,7 @@ public class TrainListController {
 
             int departureStationId = departureStation.getGaID();
             int destinationStationId = destinationStation.getGaID();
-            System.out.println("Danh sách các chuyến tàu tìm được:"+ departureStationId + "-" + destinationStationId);
+            System.out.println("Danh sách các chuyến tàu tìm được:" + departureStationId + "-" + destinationStationId);
 
             // Thực hiện tìm kiếm
             List<Train> trains = trainService.searchTrains(departureDate, departureStationId, destinationStationId);

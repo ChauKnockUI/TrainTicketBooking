@@ -78,7 +78,7 @@ public class TrainListCell extends ListCell<Train> {
             List<TrainCarriage> carriage;
 
             try {
-                Registry registry = LocateRegistry.getRegistry("172.20.10.5", 1099);
+                Registry registry = LocateRegistry.getRegistry("172.20.10.4", 1099);
                 CarriageService carriageService = (CarriageService) registry.lookup("CarriageService");
                 carriage = carriageService.getCarriageByTrainID(train.getTauID());
             } catch (RemoteException | NotBoundException e) {

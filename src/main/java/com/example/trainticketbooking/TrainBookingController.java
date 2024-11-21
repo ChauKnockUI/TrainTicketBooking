@@ -5,6 +5,7 @@ import comp.Rmi.model.Seat;
 import comp.Rmi.model.Train;
 import comp.Rmi.rmi.SeatService;
 import javafx.fxml.FXML;
+import javafx.scene.Node;
 import javafx.scene.control.Label;
 import javafx.scene.control.ToggleButton;
 import javafx.scene.layout.GridPane;
@@ -35,73 +36,61 @@ public class TrainBookingController {
     private Label trainTimeDenLabel;
     @FXML
     private Label trainGaDenLabel;
-
     @FXML
-    private GridPane seatGridPane; // Make sure this matches the fx:id in FXML
-    private Map<String, ToggleButton> seatButtons = new HashMap<>();
-
+    private Label soLuongGhe;
     @FXML
+    private Label tongTien;
+    @FXML
+    private GridPane seatGridPane;
+    private Map<String, ToggleButton> seatButtonMap = new HashMap<>();
+
     public void initialize() {
-        // Initialize ToggleButtons dynamically from seatGridPane children
-        for (int rowIndex = 2; rowIndex <= 6; rowIndex++) {
-            final int finalRowIndex = rowIndex; // Make rowIndex effectively final
-            for (int columnIndex = 0; columnIndex <= 4; columnIndex++) {
-                final int finalColumnIndex = columnIndex; // Make columnIndex effectively final
-                if (columnIndex == 2) {
-                    // Skip the middle column for labels
-                    continue;
-                }
-                String rowLabel = String.valueOf((char) ('A' + (rowIndex - 2)));
-                String seatLabel = rowLabel + (columnIndex < 2 ? (columnIndex + 1) : (columnIndex - 1));
-                ToggleButton button = (ToggleButton) seatGridPane.getChildren().stream()
-                        .filter(node -> {
-                            Integer nodeRowIndex = GridPane.getRowIndex(node);
-                            Integer nodeColumnIndex = GridPane.getColumnIndex(node);
-                            return nodeRowIndex != null && nodeColumnIndex != null &&
-                                    nodeRowIndex == finalRowIndex && nodeColumnIndex == finalColumnIndex;
-                        })
-                        .findFirst().orElse(null);
-                if (button != null) {
-                    seatButtons.put(seatLabel, button);
-                    // Add event handler to print seat ID to console when clicked
-                    button.setOnAction(event -> {
-                        System.out.println("Clicked seat: " + seatLabel);
+        // Gắn các ToggleButtons trong GridPane vào seatButtonMap theo ID
+        for (Node node : seatGridPane.getChildren()) {
+            if (node instanceof ToggleButton toggleButton) {
+                String seatID = toggleButton.getId(); // Giữ lại dưới dạng chuỗi
+                seatButtonMap.put(seatID, toggleButton);
+            }
+        }
+        System.out.println("Seat IDs in seatButtons: " + seatButtonMap.keySet());
+    }
+
+    public void updateSeatStatus(List<Seat> seatsFromDB) {
+        for (Seat seat : seatsFromDB) {
+            String soGhe = String.valueOf(seat.getSoGhe()); // Đảm bảo soGhe là chuỗi
+            int status = seat.getStatus();
+
+            ToggleButton toggleButton = seatButtonMap.get(soGhe);
+
+            if (toggleButton != null) {
+                if (status == 1) {
+                    // Nếu ghế đã được đặt, đổi màu và vô hiệu hóa click
+                    toggleButton.setStyle("-fx-background-color: #8596B3;");
+                    toggleButton.setDisable(true); // Vô hiệu hóa ghế đã đặt
+                } else {
+                    // Nếu ghế trống, đặt màu nền và thêm sự kiện click
+                    toggleButton.setStyle("-fx-background-color: #E9EFFF;");
+                    toggleButton.setDisable(false); // Cho phép click
+
+                    // Thêm sự kiện click để in ra seatID
+                    toggleButton.setOnAction(event -> {
+                        System.out.println("Ghế đã chọn: " + seat.getGheID());
                     });
                 }
+                toggleButton.setUserData(seat); // Đính kèm đối tượng Seat vào ToggleButton
+            } else {
+                System.out.println("Không tìm thấy ToggleButton cho mã ghế: " + soGhe);
             }
         }
     }
 
-    public void updateSeatStatus(List<Seat> seats) {
-        for (Seat seat : seats) {
-            String seatID = convertSeatID(seat.getGheID()); // Phương thức chuyển đổi seatID thành tên dạng "A1", "B2",...
-            ToggleButton button = seatButtons.get(seatID);
-            if (button != null) {
-                // Cập nhật trạng thái ghế và màu sắc
-                if (seat.getStatus() == 1) { // Ghế đã được đặt
-                    button.setSelected(true);
-                    button.setDisable(true);
-                    button.setStyle("-fx-background-color: #8596B3;");
-                } else if (seat.getStatus() == 0) { // Ghế chưa được đặt
-                    button.setSelected(false);
-                    button.setDisable(false);
-                    button.setStyle("-fx-background-color: #E9EFFF;");
-                }
-            }
-        }
-    }
 
-    private String convertSeatID(int seatID) {
-        int row = (seatID - 1) / 4;
-        int col = (seatID - 1) % 4;
-        char rowLabel = (char) ('A' + row);
-        int seatNumber = col + 1;
-        return rowLabel + String.valueOf(seatNumber);
-    }
+
+
 
     public void setTrainAndCarriage(Train train, Carriage carriage) throws RemoteException {
         if (trainIdNameLabel != null) {
-            trainIdNameLabel.setText("ID: " + train.getTauID() + "- Train Name: " + train.getTenTau());
+            trainIdNameLabel.setText("ID: " + train.getTauID() + " - Train Name: " + train.getTenTau());
             carriageLabel.setText("Class " + carriage.getToaID() + " & Carriage: " + carriage.getTenToa());
 
             String[] dateTimeParts = DateTimeUtil.splitDateTime(train.getGioDi().toString());
@@ -114,18 +103,15 @@ public class TrainBookingController {
             trainTimeDenLabel.setText(dateTimeParts2[1]);
 
             try {
-                Registry registry = LocateRegistry.getRegistry("172.20.10.5", 1099);
+                Registry registry = LocateRegistry.getRegistry("172.20.10.4", 1099);
                 SeatService seatService = (SeatService) registry.lookup("SeatService");
                 List<Seat> seats = seatService.getAllSeats(train.getTauID(), carriage.getToaID());
-                System.out.println("Total seats in grid: " + seatGridPane.getChildren().size());
-                if (seats.size() > 0) {
-                    System.out.println("Total seats in grid: " + seatGridPane.getChildren().size());
+
+                if (!seats.isEmpty()) {
+                    updateSeatStatus(seats);
                 } else {
-                    System.out.println("khong lay dươc");
+                    System.out.println("Không lấy được dữ liệu ghế.");
                 }
-
-                updateSeatStatus(seats);
-
             } catch (RemoteException | NotBoundException e) {
                 e.printStackTrace();
             }

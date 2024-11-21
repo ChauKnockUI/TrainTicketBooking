@@ -9,5 +9,6 @@ import java.util.List;
 
 public interface TrainService extends Remote {
     List<Train> searchTrains(Date departureDate, int departureStationId, int destinationStationId) throws RemoteException;
+
     List<Train> getAllTrains() throws RemoteException;
 }
