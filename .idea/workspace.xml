@@ -6,44 +6,8 @@
   <component name="ChangeListManager">
     <list default="true" id="de87072b-561a-4f06-a61a-e967e7e098ce" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/comp/Main.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/comp/Rmi/model/CTHD.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/comp/Rmi/model/Carriage.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/comp/Rmi/model/HoaDon.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/comp/Rmi/model/Price.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/comp/Rmi/model/Seat.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/comp/Rmi/model/Station.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/comp/Rmi/model/Train.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/comp/Rmi/model/TrainCarriage.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/comp/Rmi/model/Tuyen.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/comp/Rmi/rmi/CarriageService.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/comp/Rmi/rmi/CarriageServiceImpl.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/comp/Rmi/rmi/HoaDonService.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/comp/Rmi/rmi/HoaDonServiceImpl.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/comp/Rmi/rmi/LoginService.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/comp/Rmi/rmi/LoginServiceImpl.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/comp/Rmi/rmi/PriceService.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/comp/Rmi/rmi/PriceServiceImpl.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/comp/Rmi/rmi/SeatService.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/comp/Rmi/rmi/SeatServiceImpl.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/comp/Rmi/rmi/StationService.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/comp/Rmi/rmi/StationServiceImpl.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/comp/Rmi/rmi/TicketService.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/comp/Rmi/rmi/TicketServiceImpl.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/comp/Rmi/rmi/TrainService.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/comp/Rmi/rmi/TrainServiceImpl.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/comp/Rmi/rmi/TuyenService.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/comp/Rmi/rmi/TuyenServiceImpl.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/comp/trainticketserver/DAO/DatabaseConnection.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/comp/trainticketserver/DAO/HoaDonDAO.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/comp/trainticketserver/DAO/NhanVienDAO.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/comp/trainticketserver/DAO/PriceDAO.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/comp/trainticketserver/DAO/SeatDAO.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/comp/trainticketserver/DAO/StationDAO.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/comp/trainticketserver/DAO/TicketDAO.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/comp/trainticketserver/DAO/ToaDAO.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/comp/trainticketserver/DAO/TrainDAO.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/comp/trainticketserver/DAO/TuyenDAO.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/trainticketbooking/LoginController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/trainticketbooking/LoginController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/comp/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/comp/Main.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -206,7 +170,7 @@
       <workItem from="1732248814345" duration="2256000" />
       <workItem from="1732293075930" duration="1266000" />
       <workItem from="1732341282264" duration="86000" />
-      <workItem from="1732542191854" duration="1768000" />
+      <workItem from="1732542191854" duration="4480000" />
     </task>
     <servers />
   </component>

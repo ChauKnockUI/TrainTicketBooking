@@ -1,6 +1,8 @@
 package com.example.trainticketbooking;
 
 import com.jfoenix.controls.JFXButton;
+import comp.Rmi.model.NhanVien;
+import comp.Rmi.rmi.LoginService;
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -14,6 +16,10 @@ import javafx.scene.control.TextField;
 import javafx.scene.Parent;
 import javafx.stage.Stage;
 
+import java.rmi.registry.LocateRegistry;
+import java.rmi.registry.Registry;
+
+
 public class LoginController {
 
     @FXML
@@ -24,35 +30,58 @@ public class LoginController {
 
     @FXML
     private Button loginButton;
-
+    public class GlobalConfig {
+        public static final String serverIP = "172.20.10.4"; // Địa chỉ IP của server RMI
+    }
     @FXML
-    public void handleLogin(ActionEvent event) throws Exception {
-        // Lấy thông tin người dùng
-        String username = usernameField.getText();
-        String password = passwordField.getText();
+    public void handleLogin(ActionEvent event) {
+        try {
+            // Lấy thông tin từ giao diện
+            String username = usernameField.getText().trim();
+            String password = passwordField.getText().trim();
 
-        // Kiểm tra thông tin đăng nhập
-        if (username.equals("admin") && password.equals("admin")) { // Điều kiện đăng nhập đơn giản
-            // Nếu đăng nhập thành công, chuyển đến màn hình search-trains.fxml
-            System.out.println("Login successful!");
+            // Kết nối đến Registry trên server RMI
+            String serverIP = GlobalConfig.serverIP; // Sử dụng biến cấu hình GlobalConfig
+            int port = 1099; // Cổng mặc định
+            Registry registry = LocateRegistry.getRegistry(serverIP, port);
 
-            // Chuyển màn hình
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("search-trains.fxml"));
-            Parent root = loader.load();
-            Stage stage = (Stage) loginButton.getScene().getWindow();
-            stage.setScene(new Scene(root));
-            stage.show();
-        } else {
-            // Nếu thông tin đăng nhập sai, in ra thông báo đăng nhập thất bại trong console
-            System.out.println("Invalid username or password.");
+            // Tra cứu dịch vụ LoginService
+            LoginService loginService = (LoginService) registry.lookup("LoginService");
 
-            // Hiển thị thông báo lỗi
+            // Gọi phương thức đăng nhập trên server và nhận đối tượng NhanVien
+            NhanVien nhanVien = loginService.login(username, password);
+
+            if (nhanVien == null) {
+                // Nếu đăng nhập thất bại
+                Alert alert = new Alert(AlertType.ERROR);
+                alert.setTitle("Login Failed");
+                alert.setHeaderText("Invalid username or password");
+                alert.showAndWait();
+            } else {
+                // Xử lý theo vai trò của nhân viên
+                String role = nhanVien.getRole(); // Lấy role từ đối tượng NhanVien
+
+                // Chuyển đến màn hình tương ứng dựa trên vai trò
+                String fxmlFile = role != null && role.equalsIgnoreCase("staff") ?
+                        "/com/example/trainticketbooking/search-trains.fxml" :
+                        "/com/example/trainticketbooking/management/pages/Home.fxml";
+
+                FXMLLoader loader = new FXMLLoader(getClass().getResource(fxmlFile));
+                Parent root = loader.load();
+
+                Stage stage = (Stage) loginButton.getScene().getWindow();
+                stage.setScene(new Scene(root));
+                stage.show();
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+
             Alert alert = new Alert(AlertType.ERROR);
-            alert.setTitle("Login Failed");
-            alert.setHeaderText("Invalid username or password");
+            alert.setTitle("Error");
+            alert.setHeaderText("An error occurred while connecting to the server.");
+            alert.setContentText(e.getMessage());
             alert.showAndWait();
         }
     }
-
 
 }
