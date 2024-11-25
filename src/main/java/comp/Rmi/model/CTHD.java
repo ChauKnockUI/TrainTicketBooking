@@ -7,7 +7,7 @@ public class CTHD implements Serializable {
     public int cthdID;
     public int gheID;
     public int tauID;
-    public  int gadiID;
+    public int gadiID;
     public int gadenID;
     public int hoadonID;
     public Date ngayKhoiHanh;

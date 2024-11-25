@@ -7,5 +7,5 @@ import java.rmi.RemoteException;
 import java.util.List;
 
 public interface CarriageService extends Remote {
-    public List<TrainCarriage> getCarriageByTrainID(int trainID) throws RemoteException;
+    List<TrainCarriage> getCarriageByTrainID(int trainID) throws RemoteException;
 }

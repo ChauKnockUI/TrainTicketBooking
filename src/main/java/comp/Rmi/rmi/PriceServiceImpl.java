@@ -8,7 +8,7 @@ import java.rmi.server.UnicastRemoteObject;
 import java.util.List;
 
 public class PriceServiceImpl extends UnicastRemoteObject implements PriceService {
-    private PriceDAO priceDAO;
+    private final PriceDAO priceDAO;
 
     public PriceServiceImpl() throws RemoteException {
         priceDAO = new PriceDAO();

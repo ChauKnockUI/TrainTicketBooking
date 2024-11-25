@@ -6,7 +6,7 @@ public class Seat implements Serializable {
     private int gheID;
     private int soGhe;
     private int loaiGheID;
-    private  int toaID;
+    private int toaID;
     private int status;
 
     public int getStatus() {

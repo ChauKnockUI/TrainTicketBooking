@@ -8,14 +8,14 @@ import java.rmi.server.UnicastRemoteObject;
 import java.util.List;
 
 public class CarriageServiceImpl extends UnicastRemoteObject implements CarriageService {
-    private ToaDAO toaDAO;
+    private final ToaDAO toaDAO;
 
     public CarriageServiceImpl() throws RemoteException {
         toaDAO = new ToaDAO();
     }
 
     @Override
-    public List<TrainCarriage> getCarriageByTrainID(int trainID ) throws RemoteException {
+    public List<TrainCarriage> getCarriageByTrainID(int trainID) throws RemoteException {
         return toaDAO.getCarriageByTrainID(trainID);
     }
 }

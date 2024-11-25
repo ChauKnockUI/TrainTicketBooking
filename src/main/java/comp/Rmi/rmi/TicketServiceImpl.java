@@ -2,7 +2,6 @@ package comp.Rmi.rmi;
 
 import comp.Rmi.model.CTHD;
 import comp.trainticketserver.DAO.TicketDAO;
-import comp.trainticketserver.DAO.TrainDAO;
 
 import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
@@ -10,7 +9,7 @@ import java.sql.Date;
 
 public class TicketServiceImpl extends UnicastRemoteObject implements TicketService {
 
-    private TicketDAO ticketDAO;
+    private final TicketDAO ticketDAO;
 
     public TicketServiceImpl() throws RemoteException {
         ticketDAO = new TicketDAO();
@@ -23,12 +22,12 @@ public class TicketServiceImpl extends UnicastRemoteObject implements TicketServ
 
     @Override
     public boolean cancelTicket(int hoaDonID, int gheID) throws RemoteException {
-        return ticketDAO.cancelTicket(hoaDonID,gheID);
+        return ticketDAO.cancelTicket(hoaDonID, gheID);
     }
 
     @Override
     public CTHD modifyTicket(int cthdID, int newGheID, int newTauID, int newGaDi, int newGaDen, Date newNgayKhoiHanh, String newTenKH, String newDiaChi, String newSDT, float newGiaTien, int newNhanVienID) throws RemoteException {
-        return ticketDAO.modifyTicket(cthdID,newGheID,newTauID,newGaDi,newGaDen,newNgayKhoiHanh,newTenKH,newDiaChi,newSDT,newGiaTien,newNhanVienID);
+        return ticketDAO.modifyTicket(cthdID, newGheID, newTauID, newGaDi, newGaDen, newNgayKhoiHanh, newTenKH, newDiaChi, newSDT, newGiaTien, newNhanVienID);
     }
 
 

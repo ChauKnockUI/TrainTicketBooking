@@ -49,6 +49,7 @@ public class TrainDAO {
 
         return trainList;
     }
+
     // Method to get all trains
     public List<Train> getAllTrains() {
         List<Train> trainList = new ArrayList<>();

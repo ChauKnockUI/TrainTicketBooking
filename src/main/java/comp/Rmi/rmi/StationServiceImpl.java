@@ -8,7 +8,7 @@ import java.rmi.server.UnicastRemoteObject;
 import java.util.List;
 
 public class StationServiceImpl extends UnicastRemoteObject implements StationService {
-    private StationDAO stationDAO;
+    private final StationDAO stationDAO;
 
     public StationServiceImpl() throws RemoteException {
         stationDAO = new StationDAO();

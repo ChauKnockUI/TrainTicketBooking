@@ -8,7 +8,8 @@ public class Tuyen implements Serializable {
     private String huong;
 
     // Constructor mặc định
-    public Tuyen() {}
+    public Tuyen() {
+    }
 
     // Getters và Setters
     public int getTuyenID() {

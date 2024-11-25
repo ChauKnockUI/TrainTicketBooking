@@ -1,6 +1,8 @@
 package comp.trainticketserver.DAO;
 
+import comp.Rmi.model.CTHDDetailsDTO;
 import comp.Rmi.model.HoaDon;
+
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
@@ -63,4 +65,53 @@ public class HoaDonDAO {
 
         return hoaDon;
     }
+
+    public List<CTHDDetailsDTO> getHoaDonDetailsByNhanVienID(int nhanVienID) {
+        List<CTHDDetailsDTO> detailsList = new ArrayList<>();
+
+        String sql = "SELECT " +
+                "h.HoaDonID, nv.Ten AS TenNhanVien, h.TenKH, g.GheID, t.TauID, t.TenTau, " +
+                "lg.Ten AS LoaiGhe, cthd.NgayKhoiHanh, " +
+                "gd.Ten AS GaDi, gd2.Ten AS GaDen " +
+                "FROM hoadon h " +
+                "JOIN chitiethoadon cthd ON h.HoaDonID = cthd.HoaDonID " +
+                "JOIN nhanvien nv ON h.NhanVienID = nv.NhanVienID " +
+                "JOIN ghe g ON cthd.GheID = g.GheID " +
+                "JOIN loaighe lg ON g.LoaiGheID = lg.LoaiGheID " +
+                "JOIN tau t ON cthd.TauID = t.TauID " +
+                "JOIN ga gd ON cthd.GaDi = gd.GaID " +
+                "JOIN ga gd2 ON cthd.GaDen = gd2.GaID " +
+                "WHERE h.NhanVienID = ?";
+
+        try (Connection connection = DatabaseConnection.getConnection();
+             PreparedStatement ps = connection.prepareStatement(sql)) {
+
+            ps.setInt(1, nhanVienID);
+
+            try (ResultSet rs = ps.executeQuery()) {
+                while (rs.next()) {
+                    CTHDDetailsDTO details = new CTHDDetailsDTO();
+                    details.setHoadonID(rs.getInt("HoaDonID"));
+                    details.setTenNhanVien(rs.getString("TenNhanVien"));
+                    details.setTenKH(rs.getString("TenKH"));
+                    details.setSoGhe(rs.getInt("GheID"));
+                    details.setTauID(rs.getInt("TauID"));
+                    details.setTenTau(rs.getString("TenTau"));
+                    details.setLoaiGhe(rs.getString("LoaiGhe"));
+                    details.setNgayKhoiHanh(rs.getDate("NgayKhoiHanh"));
+                    details.setTenGaDi(rs.getString("GaDi"));
+                    details.setTenGaDen(rs.getString("GaDen"));
+
+                    detailsList.add(details);
+                }
+            }
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return detailsList;
+    }
+
+
 }

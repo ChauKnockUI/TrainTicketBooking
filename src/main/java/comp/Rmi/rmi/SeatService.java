@@ -7,5 +7,5 @@ import java.rmi.RemoteException;
 import java.util.List;
 
 public interface SeatService extends Remote {
-    public List<Seat> getAllSeats(int tauID ,int toaID) throws RemoteException;
+    List<Seat> getAllSeats(int tauID, int toaID) throws RemoteException;
 }

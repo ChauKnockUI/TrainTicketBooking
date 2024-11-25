@@ -1,7 +1,6 @@
 package comp.trainticketserver.DAO;
 
 import comp.Rmi.model.Carriage;
-import comp.Rmi.model.Price;
 import comp.Rmi.model.Train;
 import comp.Rmi.model.TrainCarriage;
 
@@ -11,7 +10,6 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.stream.Collectors;
 
 public class ToaDAO {
 
