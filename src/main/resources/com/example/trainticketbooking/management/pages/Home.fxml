@@ -14,8 +14,7 @@
 <?import javafx.scene.shape.Line?>
 <?import javafx.scene.text.Font?>
 
-<?import java.net.URL?>
-<BorderPane fx:id="bp" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="650.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/23" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.trainticketbooking.management.HomeController">
+<BorderPane fx:id="bp" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="650.0" prefWidth="1000.0" stylesheets="@../css/application.css" xmlns="http://javafx.com/javafx/23" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.trainticketbooking.management.HomeController">
 
 
    <left>
@@ -36,10 +35,10 @@
                </children></AnchorPane>
             <VBox layoutY="104.0" prefHeight="323.0" prefWidth="200.0">
                <children>
-                  <Pane id="studentMenuItem" onMouseClicked="#home" prefHeight="56.0" prefWidth="200.0" styleClass="leftSideMenuItem">
+                  <Pane id="studentMenuItem" onMouseClicked="#home" prefHeight="56.0" prefWidth="200.0" styleClass="leftSideMenuItem" stylesheets="@../css/application.css">
                      <children>
                         <Pane layoutX="21.0" layoutY="16.0" prefHeight="29.0" prefWidth="32.0" styleClass="studentIcon" />
-                        <Label layoutX="56.0" layoutY="17.0" styleClass="studentLabel" text="Students">
+                        <Label layoutX="56.0" layoutY="17.0" styleClass="studentLabel" text="Dashboard">
                            <font>
                               <Font name="Oswald Regular" size="16.0" />
                            </font>
@@ -48,7 +47,7 @@
                   </Pane>
                   <Pane onMouseClicked="#page1" prefHeight="56.0" prefWidth="200.0" styleClass="leftSideMenuItem">
                      <children>
-                        <Label layoutX="55.0" layoutY="16.0" text="Transactions">
+                        <Label layoutX="55.0" layoutY="16.0" stylesheets="@../css/application.css" text="Transactions">
                            <font>
                               <Font name="Oswald Regular" size="16.0" />
                            </font>
@@ -60,21 +59,7 @@
                         <Pane layoutX="21.0" layoutY="19.0" prefHeight="29.0" prefWidth="32.0" styleClass="transactionIcon" />
                      </children>
                   </Pane>
-                  <Pane onMouseClicked="#page2" prefHeight="56.0" prefWidth="200.0" styleClass="leftSideMenuItem">
-                     <children>
-                        <Label layoutX="55.0" layoutY="18.0" text="Donators">
-                           <font>
-                              <Font name="Oswald Regular" size="16.0" />
-                           </font>
-                           <styleClass>
-                              <String fx:value="lefSideMenuItem" />
-                              <String fx:value="donatorLabel" />
-                           </styleClass>
-                        </Label>
-                        <Pane layoutX="21.0" layoutY="18.0" prefHeight="29.0" prefWidth="32.0" styleClass="donatorIcon" />
-                     </children>
-                  </Pane>
-                  <Pane onMouseClicked="#page3" prefHeight="56.0" prefWidth="200.0" styleClass="leftSideMenuItem">
+                  <Pane onMouseClicked="#page3" prefHeight="56.0" prefWidth="200.0" styleClass="leftSideMenuItem" stylesheets="@../css/application.css">
                      <children>
                         <Label layoutX="55.0" layoutY="18.0" text="Reports">
                            <font>
@@ -88,7 +73,7 @@
                         <Pane layoutX="21.0" layoutY="18.0" prefHeight="29.0" prefWidth="32.0" styleClass="reportIcon" />
                      </children>
                   </Pane>
-                  <Pane onMouseClicked="#page4" prefHeight="56.0" prefWidth="200.0" styleClass="leftSideMenuItem">
+                  <Pane onMouseClicked="#page4" prefHeight="56.0" prefWidth="200.0" styleClass="leftSideMenuItem" stylesheets="@../css/application.css">
                      <children>
                         <Label layoutX="55.0" layoutY="18.0" text="Admins">
                            <font>
@@ -104,7 +89,7 @@
                   </Pane>
                </children>
             </VBox>
-            <Line endX="12.0" layoutX="165.0" layoutY="629.0" startX="-62.0">
+            <Line endX="12.0" layoutX="165.0" layoutY="629.0" startX="-150.3333282470703">
                <stroke>
                   <LinearGradient endX="1.0" endY="1.0">
                      <stops>
