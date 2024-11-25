@@ -1,0 +1,135 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.String?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.paint.Color?>
+<?import javafx.scene.paint.LinearGradient?>
+<?import javafx.scene.paint.Stop?>
+<?import javafx.scene.shape.Line?>
+<?import javafx.scene.text.Font?>
+
+<?import java.net.URL?>
+<BorderPane fx:id="bp" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="650.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/23" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.trainticketbooking.management.HomeController">
+
+
+   <left>
+      <Pane fx:id="leftSideMenu" prefHeight="651.0" prefWidth="200.0" styleClass="leftSideMenu" BorderPane.alignment="CENTER">
+         <children>
+            <AnchorPane prefHeight="104.0" prefWidth="200.0">
+               <children>
+                  <Label layoutX="29.0" layoutY="52.0" prefHeight="26.0" prefWidth="127.0" styleClass="subTitleLogo" text="Management System" textFill="#3367d6">
+                     <font>
+                        <Font name="System Italic" size="14.0" />
+                     </font>
+                  </Label>
+                  <ImageView fitHeight="38.0" fitWidth="183.0" layoutX="9.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../images/Metroway.png" />
+                     </image>
+                  </ImageView>
+               </children></AnchorPane>
+            <VBox layoutY="104.0" prefHeight="323.0" prefWidth="200.0">
+               <children>
+                  <Pane id="studentMenuItem" onMouseClicked="#home" prefHeight="56.0" prefWidth="200.0" styleClass="leftSideMenuItem">
+                     <children>
+                        <Pane layoutX="21.0" layoutY="16.0" prefHeight="29.0" prefWidth="32.0" styleClass="studentIcon" />
+                        <Label layoutX="56.0" layoutY="17.0" styleClass="studentLabel" text="Students">
+                           <font>
+                              <Font name="Oswald Regular" size="16.0" />
+                           </font>
+                        </Label>
+                     </children>
+                  </Pane>
+                  <Pane onMouseClicked="#page1" prefHeight="56.0" prefWidth="200.0" styleClass="leftSideMenuItem">
+                     <children>
+                        <Label layoutX="55.0" layoutY="16.0" text="Transactions">
+                           <font>
+                              <Font name="Oswald Regular" size="16.0" />
+                           </font>
+                           <styleClass>
+                              <String fx:value="lefSideMenuItem" />
+                              <String fx:value="transactionLabel" />
+                           </styleClass>
+                        </Label>
+                        <Pane layoutX="21.0" layoutY="19.0" prefHeight="29.0" prefWidth="32.0" styleClass="transactionIcon" />
+                     </children>
+                  </Pane>
+                  <Pane onMouseClicked="#page2" prefHeight="56.0" prefWidth="200.0" styleClass="leftSideMenuItem">
+                     <children>
+                        <Label layoutX="55.0" layoutY="18.0" text="Donators">
+                           <font>
+                              <Font name="Oswald Regular" size="16.0" />
+                           </font>
+                           <styleClass>
+                              <String fx:value="lefSideMenuItem" />
+                              <String fx:value="donatorLabel" />
+                           </styleClass>
+                        </Label>
+                        <Pane layoutX="21.0" layoutY="18.0" prefHeight="29.0" prefWidth="32.0" styleClass="donatorIcon" />
+                     </children>
+                  </Pane>
+                  <Pane onMouseClicked="#page3" prefHeight="56.0" prefWidth="200.0" styleClass="leftSideMenuItem">
+                     <children>
+                        <Label layoutX="55.0" layoutY="18.0" text="Reports">
+                           <font>
+                              <Font name="Oswald Regular" size="16.0" />
+                           </font>
+                           <styleClass>
+                              <String fx:value="lefSideMenuItem" />
+                              <String fx:value="reportLabel" />
+                           </styleClass>
+                        </Label>
+                        <Pane layoutX="21.0" layoutY="18.0" prefHeight="29.0" prefWidth="32.0" styleClass="reportIcon" />
+                     </children>
+                  </Pane>
+                  <Pane onMouseClicked="#page4" prefHeight="56.0" prefWidth="200.0" styleClass="leftSideMenuItem">
+                     <children>
+                        <Label layoutX="55.0" layoutY="18.0" text="Admins">
+                           <font>
+                              <Font name="Oswald Regular" size="16.0" />
+                           </font>
+                           <styleClass>
+                              <String fx:value="lefSideMenuItem" />
+                              <String fx:value="adminLabel" />
+                           </styleClass>
+                        </Label>
+                        <Pane layoutX="21.0" layoutY="18.0" prefHeight="29.0" prefWidth="32.0" styleClass="adminIcon" />
+                     </children>
+                  </Pane>
+               </children>
+            </VBox>
+            <Line endX="12.0" layoutX="165.0" layoutY="629.0" startX="-62.0">
+               <stroke>
+                  <LinearGradient endX="1.0" endY="1.0">
+                     <stops>
+                        <Stop>
+                           <color>
+                              <Color red="0.4429824650287628" green="0.6195175647735596" blue="0.9473684430122375" />
+                           </color>
+                        </Stop>
+                        <Stop offset="1.0">
+                           <color>
+                              <Color red="0.20000000298023224" green="0.40392157435417175" blue="0.8392156958580017" />
+                           </color>
+                        </Stop>
+                     </stops>
+                  </LinearGradient>
+               </stroke>
+            </Line>
+         </children>
+      </Pane>
+   </left>
+   <center>
+      <AnchorPane fx:id="ap" prefHeight="200.0" prefWidth="200.0" styleClass="contentArea" BorderPane.alignment="CENTER">
+         <children>
+            <Label layoutX="386.0" layoutY="317.0" text="Home..." />
+         </children>
+      </AnchorPane>
+   </center>
+</BorderPane>

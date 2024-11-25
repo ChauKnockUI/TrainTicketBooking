@@ -7,6 +7,8 @@ module com.example.trainticketbooking {
     requires java.sql;
     requires jfoenix;
 
+    exports com.example.trainticketbooking.management; // Thêm dòng này
+    opens com.example.trainticketbooking.management to javafx.fxml; // Cần thiết để FXML truy cập
     opens com.example.trainticketbooking to javafx.fxml;
     exports com.example.trainticketbooking;
     exports comp.Rmi.rmi to java.rmi;

@@ -23,12 +23,14 @@ public class Main {
             PriceService priceService = new PriceServiceImpl();
             SeatService seatService = new SeatServiceImpl();
             StationService stationService = new StationServiceImpl();
+            TicketService ticketService = new TicketServiceImpl();
 
             Naming.rebind("rmi://172.20.10.4:1099/TrainService", trainService);
             Naming.rebind("rmi://172.20.10.4:1099/CarriageService", carriageService);
             Naming.rebind("rmi://172.20.10.4:1099/PriceService", priceService);
             Naming.rebind("rmi://172.20.10.4:1099/SeatService", seatService);
             Naming.rebind("rmi://172.20.10.4:1099/StationService", stationService);
+            Naming.rebind("rmi://172.20.10.4:1099/TicketService", ticketService);
 
 
             System.out.println("Service is running...");

@@ -125,7 +125,7 @@
                               <RowConstraints maxHeight="102.0" minHeight="10.0" prefHeight="66.0" vgrow="SOMETIMES" />
                           </rowConstraints>
                            <children>
-                              <ToggleButton  fx:id="1" mnemonicParsing="false" prefHeight="54.0" prefWidth="75.0" styleClass="seat-toggle-button" stylesheets="@css.css" text="A1" GridPane.rowIndex="2">
+                              <ToggleButton fx:id="1" mnemonicParsing="false" prefHeight="54.0" prefWidth="75.0" styleClass="seat-toggle-button" stylesheets="@css.css" text="A1" GridPane.rowIndex="2">
                                  <font>
                                     <Font name="Segoe UI Semibold" size="15.0" />
                                  </font>
@@ -384,16 +384,16 @@
                               <HBox prefHeight="41.0" prefWidth="597.0">
                                  <children>
                                     <Separator opacity="0.0" prefHeight="48.0" prefWidth="13.0" />
-                                    <TextField prefHeight="48.0" prefWidth="415.0" promptText="Name of Customer" />
+                                    <TextField fx:id="nameCus" prefHeight="41.0" prefWidth="286.0" promptText="Name of Customer" />
                                     <Separator opacity="0.0" prefHeight="48.0" prefWidth="15.0" />
-                                    <TextField prefHeight="48.0" prefWidth="131.0" promptText="Age" />
+                                    <TextField fx:id="addressCus" prefHeight="41.0" prefWidth="263.0" promptText="Address" />
                                  </children>
                               </HBox>
                               <Separator opacity="0.0" orientation="VERTICAL" prefHeight="9.0" prefWidth="593.0" />
                               <HBox prefHeight="42.0" prefWidth="597.0">
                                  <children>
                                     <Separator opacity="0.0" prefHeight="48.0" prefWidth="17.0" />
-                                    <TextField prefHeight="47.0" prefWidth="276.0" promptText="Phone Number" />
+                                    <TextField fx:id="phoneCus" prefHeight="47.0" prefWidth="276.0" promptText="Phone Number" />
                                     <Separator opacity="0.0" prefHeight="48.0" prefWidth="31.0" />
                                     <ComboBox opacity="0.53" prefHeight="46.0" prefWidth="118.0" promptText="Gender" />
                                     <Separator opacity="0.0" prefHeight="47.0" prefWidth="18.0" />
@@ -423,8 +423,8 @@
                                     <Font name="Segoe UI Semibold" size="13.0" />
                                  </font>
                               </Label>
-                              <Separator opacity="0.0" prefHeight="49.0" prefWidth="315.0" />
-                              <Label prefHeight="26.0" prefWidth="101.0" style="-fx-padding: 0 0 0 15px;" text="₹1000.00" textFill="GREY">
+                              <Separator opacity="0.0" prefHeight="21.0" prefWidth="326.0" />
+                              <Label prefHeight="21.0" prefWidth="71.0" style="-fx-padding: 0 0 0 15px;" text="₹100" textFill="GREY">
                                  <font>
                                     <Font name="Segoe UI Semibold" size="13.0" />
                                  </font>
@@ -439,7 +439,7 @@
                                  </font>
                               </Label>
                               <Separator opacity="0.0" prefHeight="26.0" prefWidth="368.0" />
-                              <Label prefHeight="34.0" prefWidth="60.0" style="-fx-padding: 0 0 0 15px;" fx:id="soLuongGhe" text="3" textFill="GREY">
+                              <Label fx:id="soLuongGhe" prefHeight="34.0" prefWidth="60.0" style="-fx-padding: 0 0 0 15px;" text="3" textFill="GREY">
                                  <font>
                                     <Font name="Segoe UI Semibold" size="13.0" />
                                  </font>
@@ -453,8 +453,8 @@
                                     <Font name="Segoe UI Semibold" size="20.0" />
                                  </font>
                               </Label>
-                              <Separator opacity="0.0" prefHeight="31.0" prefWidth="327.0" />
-                              <Label prefHeight="31.0" prefWidth="130.0" style="-fx-padding: 0 0 0 15px;" fx:id="tongTien" text="₹3000.00">
+                              <Separator opacity="0.0" prefHeight="31.0" prefWidth="363.0" />
+                              <Label fx:id="tongTien" prefHeight="31.0" prefWidth="70.0" style="-fx-padding: 0 0 0 15px;" text="₹300">
                                  <font>
                                     <Font name="Segoe UI Semibold" size="20.0" />
                                  </font>
@@ -463,7 +463,7 @@
                         </HBox>
                      </children>
                   </VBox>
-                  <Button layoutX="36.0" layoutY="723.0" mnemonicParsing="false" prefHeight="44.0" prefWidth="599.0" styleClass="primary-button" stylesheets="@css.css" text="Book Now" textFill="WHITE">
+                  <Button fx:id="bookNow" layoutX="36.0" layoutY="723.0" mnemonicParsing="false" prefHeight="44.0" prefWidth="599.0" styleClass="primary-button" stylesheets="@css.css" text="Book Now" textFill="WHITE">
                      <font>
                         <Font name="Segoe UI Bold" size="17.0" />
                      </font>

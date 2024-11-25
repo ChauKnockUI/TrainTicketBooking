@@ -5,41 +5,16 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="de87072b-561a-4f06-a61a-e967e7e098ce" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/trainticketbooking/LoginController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/comp/Main.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/comp/Rmi/model/CTHD.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/comp/Rmi/model/HoaDon.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/comp/Rmi/rmi/CarriageServiceImpl.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/comp/Rmi/rmi/HoaDonService.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/comp/Rmi/rmi/HoaDonServiceImpl.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/comp/Rmi/rmi/LoginService.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/comp/Rmi/rmi/LoginServiceImpl.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/comp/Rmi/rmi/PriceServiceImpl.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/comp/Rmi/rmi/SeatServiceImpl.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/comp/Rmi/rmi/StationServiceImpl.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/comp/Rmi/rmi/TicketService.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/comp/Rmi/rmi/TicketServiceImpl.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/comp/Rmi/rmi/TrainServiceImpl.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/comp/Rmi/rmi/TuyenServiceImpl.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/comp/trainticketserver/DAO/DatabaseConnection.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/comp/trainticketserver/DAO/HoaDonDAO.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/comp/trainticketserver/DAO/NhanVienDAO.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/comp/trainticketserver/DAO/PriceDAO.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/comp/trainticketserver/DAO/SeatDAO.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/comp/trainticketserver/DAO/StationDAO.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/comp/trainticketserver/DAO/TicketDAO.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/comp/trainticketserver/DAO/ToaDAO.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/comp/trainticketserver/DAO/TrainDAO.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/comp/trainticketserver/DAO/TuyenDAO.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/trainticketbooking/management/HomeController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/trainticketbooking/management/Page1Controller.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/trainticketbooking/management/Page2Controller.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/trainticketbooking/management/Page3Controller.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/example/trainticketbooking/TrainBookingController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/trainticketbooking/TrainBookingController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/trainticketbooking/TrainListCell.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/trainticketbooking/TrainListCell.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/trainticketbooking/TrainListController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/trainticketbooking/TrainListController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/example/trainticketbooking/TrainTicketApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/trainticketbooking/TrainTicketApplication.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/comp/Rmi/rmi/TrainService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/comp/Rmi/rmi/TrainService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/comp/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/comp/Main.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/module-info.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/module-info.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/com/example/trainticketbooking/TrainBooking.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/com/example/trainticketbooking/TrainBooking.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/com/example/trainticketbooking/search-trains.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/com/example/trainticketbooking/search-trains.fxml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -85,7 +60,7 @@
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "git-widget-placeholder": "master",
     "kotlin-language-version-configured": "true",
-    "last_opened_file_path": "D:/LapTrinhMang/TrainTicketBooking/src/main/java",
+    "last_opened_file_path": "D:/LapTrinhMang/TrainTicketBooking",
     "list.type.of.created.stylesheet": "CSS",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
@@ -113,6 +88,9 @@
       <recent name="D:\LapTrinhMang\TrainTicketBooking\src\main\java" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="D:\LapTrinhMang\TrainTicketBooking\src\main\java\com\example\trainticketbooking\management" />
+      <recent name="D:\LapTrinhMang\TrainTicketBooking\src\main\resources\com\example\trainticketbooking\management" />
+      <recent name="D:\LapTrinhMang\TrainTicketBooking\src\main\resources\com\example\trainticketbooking" />
       <recent name="D:\LapTrinhMang\TrainTicketBooking\src\main\java" />
       <recent name="D:\LapTrinhMang\TrainTicketBooking\src\main\java\comp\Rmi" />
     </key>
@@ -195,7 +173,11 @@
       <workItem from="1731372293328" duration="610000" />
       <workItem from="1731752717980" duration="1768000" />
       <workItem from="1731857767834" duration="4160000" />
-      <workItem from="1732164270821" duration="2671000" />
+      <workItem from="1732164270821" duration="3824000" />
+      <workItem from="1732248814345" duration="2256000" />
+      <workItem from="1732293075930" duration="1266000" />
+      <workItem from="1732341282264" duration="86000" />
+      <workItem from="1732542191854" duration="1358000" />
     </task>
     <servers />
   </component>
