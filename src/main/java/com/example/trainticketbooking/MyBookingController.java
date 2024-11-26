@@ -16,6 +16,7 @@ import javafx.scene.layout.VBox;
 
 import java.rmi.registry.LocateRegistry;
 import java.rmi.registry.Registry;
+import java.util.Arrays;
 import java.util.List;
 
 public class MyBookingController {
@@ -131,20 +132,79 @@ public class MyBookingController {
     }
 
     // Hàm xử lý sự kiện xóa hóa đơn
+    // Hàm xử lý sự kiện xóa hóa đơn
     private void handleDeleteBooking(CTHDDetailsDTO item) {
+        // Hiển thị hộp thoại xác nhận
         Alert confirmation = new Alert(Alert.AlertType.CONFIRMATION);
         confirmation.setTitle("Delete Booking");
         confirmation.setHeaderText("Are you sure you want to delete this booking?");
         confirmation.setContentText("Invoice ID: " + item.getHoadonID());
 
-        // Nếu người dùng xác nhận xóa
         confirmation.showAndWait().ifPresent(response -> {
             if (response == javafx.scene.control.ButtonType.OK) {
-                // Thực hiện logic xóa hóa đơn ở đây
-                System.out.println("Hóa đơn đã bị xóa: " + item.getHoadonID());
+                try {
+                    // Gọi hàm xóa booking qua RMI
+                    if (deleteBookingFromServer(item)) {
+                        // Nếu xóa thành công, hiển thị thông báo và tải lại danh sách
+                        showAlert(Alert.AlertType.INFORMATION, "Success",
+                                "Booking canceled successfully",
+                                "The booking has been successfully canceled.");
+                        loadMyBookings();
+                    } else {
+                        // Nếu xóa thất bại
+                        showAlert(Alert.AlertType.WARNING, "Failure",
+                                "Cancellation failed",
+                                "Unable to cancel the booking. Please try again.");
+                    }
+                } catch (Exception e) {
+                    // Xử lý lỗi khi kết nối hoặc thực thi RMI
+                    e.printStackTrace();
+                    System.out.println("Error: " + e.getMessage());
+                    Throwable cause = e.getCause();
+                    if (cause != null) {
+                        System.out.println("Cause: " + cause.getMessage());
+                        cause.printStackTrace();
+                    }
+                    showAlert(Alert.AlertType.ERROR, "Error",
+                            "Cancellation error",
+                            "An error occurred while canceling the booking. Please try again.");
+                }
             }
         });
     }
+
+    // Hàm gọi RMI để xóa booking
+    private boolean deleteBookingFromServer(CTHDDetailsDTO item) throws Exception {
+
+        // Kết nối tới RMI registry
+        Registry registry1 = LocateRegistry.getRegistry("172.20.10.4", 1099);
+        // Kiểm tra các dịch vụ đã được đăng ký
+        String[] services = registry1.list();
+        System.out.println("Services registered in registry:");
+        for (String service : services) {
+            System.out.println(service);
+        }
+        if (!Arrays.asList(services).contains("TicketService")) {
+            System.err.println("Error: TicketService is not registered in the registry.");
+            return false;
+        }
+        TicketService ticketService = (TicketService) registry1.lookup("TicketService");
+
+        // Gọi phương thức hủy vé trên server
+        System.out.println("Attempting to cancel ticket: Invoice ID " + item.getHoadonID() +
+                ", Seat " + item.getSoGhe());
+        return ticketService.cancelTicket(item.getHoadonID(), item.getSoGhe());
+    }
+
+    // Hàm hiển thị thông báo tiện ích
+    private void showAlert(Alert.AlertType alertType, String title, String header, String content) {
+        Alert alert = new Alert(alertType);
+        alert.setTitle(title);
+        alert.setHeaderText(header);
+        alert.setContentText(content);
+        alert.showAndWait();
+    }
+
 
 
 
