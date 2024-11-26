@@ -1,5 +1,6 @@
 package com.example.trainticketbooking;
 
+import comp.Rmi.model.NhanVien;
 import comp.Rmi.model.Station;
 import comp.Rmi.model.Train;
 import comp.Rmi.rmi.StationService;
@@ -8,17 +9,22 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.control.ComboBox;
-import javafx.scene.control.ListCell;
-import javafx.scene.control.ListView;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Node;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
+import javafx.scene.control.*;
+import javafx.stage.Stage;
 import javafx.util.StringConverter;
 
+import java.io.IOException;
 import java.rmi.NotBoundException;
 import java.rmi.RemoteException;
 import java.rmi.registry.LocateRegistry;
 import java.rmi.registry.Registry;
 import java.sql.Date;
 import java.util.List;
+
 
 public class TrainListController {
 
@@ -28,6 +34,10 @@ public class TrainListController {
     private ComboBox<Station> fromComboBox;
     @FXML
     private ComboBox<Station> toComboBox;
+    @FXML
+    private Label nameLabel;
+    @FXML
+    private Button myBookingUIButton;
     public class GlobalConfig {
 
         // Biến IP toàn cục
@@ -52,6 +62,15 @@ public class TrainListController {
     public void initialize() {
         System.out.println("Initialize method called!");
         ObservableList<Train> trainList;
+        NhanVien currentNhanVien = Session.getInstance().getNhanVien();
+
+        if (currentNhanVien != null) {
+            // Hiển thị tên nhân viên trong giao diện
+            nameLabel.setText(currentNhanVien.getTen());
+        } else {
+            // Nếu không có thông tin, điều hướng về trang đăng nhập
+            System.out.println("Không có nhân viên trong phiên. Điều hướng về trang đăng nhập.");
+        }
         try {
             Registry registry = LocateRegistry.getRegistry(GlobalConfig.serverIP, 1099);
             TrainService trainService = (TrainService) registry.lookup("TrainService");
@@ -197,5 +216,20 @@ public class TrainListController {
             e.printStackTrace();
         }
     }
+    @FXML
+
+    private void onMyBookingButtonClick(ActionEvent event) {
+        System.out.println("Button My Booking clicked");
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("MyBooking.fxml"));
+            Parent root = loader.load();
+            Stage stage = (Stage) myBookingUIButton.getScene().getWindow();
+            stage.setScene(new Scene(root));
+            stage.show();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
 
 }

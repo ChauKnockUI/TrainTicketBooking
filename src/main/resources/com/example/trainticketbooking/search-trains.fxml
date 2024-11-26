@@ -17,7 +17,7 @@
 
 <BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="812.0" prefWidth="1183.0" xmlns="http://javafx.com/javafx/23" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.trainticketbooking.TrainListController">
    <top>
-      <HBox prefHeight="76.0" prefWidth="1183.0" BorderPane.alignment="CENTER">
+      <HBox prefHeight="76.0" prefWidth="1183.0" BorderPane.alignment="CENTER" >
          <children>
             <Separator prefHeight="48.0" prefWidth="62.0" />
             <ImageView fitHeight="67.0" fitWidth="259.0" pickOnBounds="true" smooth="false">
@@ -26,11 +26,11 @@
                </image>
             </ImageView>
             <Separator prefHeight="66.0" prefWidth="648.0" />
-            <Label prefHeight="64.0" prefWidth="83.0" text=" MyBooking" textAlignment="CENTER">
+            <Label fx:id="nameLabel" prefHeight="64.0" prefWidth="83.0" text="Deafault Name" textAlignment="CENTER">
                <font>
                   <Font name="Segoe UI Semibold" size="13.0" />
                </font></Label>
-            <Button contentDisplay="RIGHT" mnemonicParsing="false" prefHeight="63.0" prefWidth="131.0" style="-fx-background-color: transperent;" stylesheets="@css.css" text="Login/Sign In" textAlignment="RIGHT" textFill="#0578ff">
+            <Button fx:id="myBookingUIButton" onAction="#onMyBookingButtonClick" contentDisplay="RIGHT" mnemonicParsing="false" prefHeight="63.0" prefWidth="131.0" style="-fx-background-color: transperent;" stylesheets="@css.css" text="MyBooking" textAlignment="RIGHT" textFill="#0578ff">
                <font>
                   <Font name="Segoe UI Bold" size="15.0" />
                </font></Button>
