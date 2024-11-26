@@ -58,6 +58,7 @@ public class LoginController {
                 alert.setHeaderText("Invalid username or password");
                 alert.showAndWait();
             } else {
+                Session.getInstance().setNhanVien(nhanVien);
                 // Xử lý theo vai trò của nhân viên
                 String role = nhanVien.getRole(); // Lấy role từ đối tượng NhanVien
 

@@ -5,9 +5,11 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="de87072b-561a-4f06-a61a-e967e7e098ce" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/src/main/resources/com/example/trainticketbooking/MyBooking.fxml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/trainticketbooking/Session.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/com/example/trainticketbooking/management/css/application.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/com/example/trainticketbooking/management/css/application.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/trainticketbooking/LoginController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/trainticketbooking/LoginController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/trainticketbooking/management/HomeController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/trainticketbooking/management/HomeController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/com/example/trainticketbooking/management/pages/Home.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/com/example/trainticketbooking/management/pages/Home.fxml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -18,8 +20,8 @@
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="CSS File" />
-        <option value="Class" />
         <option value="FxmlFile" />
+        <option value="Class" />
       </list>
     </option>
   </component>
@@ -86,6 +88,9 @@
       <recent name="D:\LapTrinhMang\TrainTicketBooking\src\main\resources\com\example\trainticketbooking\management" />
       <recent name="D:\LapTrinhMang\TrainTicketBooking\src\main\resources\com\example\trainticketbooking" />
       <recent name="D:\LapTrinhMang\TrainTicketBooking\src\main\java\comp\Rmi" />
+    </key>
+    <key name="MoveClassesOrPackagesDialog.RECENTS_KEY">
+      <recent name="com.example.trainticketbooking" />
     </key>
   </component>
   <component name="RunManager" selected="Application.TrainTicketApplication">
@@ -171,7 +176,7 @@
       <workItem from="1732293075930" duration="1266000" />
       <workItem from="1732341282264" duration="86000" />
       <workItem from="1732542191854" duration="6198000" />
-      <workItem from="1732600293330" duration="1308000" />
+      <workItem from="1732600293330" duration="1952000" />
     </task>
     <servers />
   </component>

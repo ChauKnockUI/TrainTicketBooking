@@ -113,6 +113,7 @@
    <center>
       <AnchorPane fx:id="ap" prefHeight="200.0" prefWidth="200.0" styleClass="contentArea" BorderPane.alignment="CENTER">
          <children>
+            <Label fx:id="nameLabel" layoutX="386.0" layoutY="317.0" text="Home..." />
             <Label layoutX="386.0" layoutY="317.0" text="Home..." />
          </children>
       </AnchorPane>
