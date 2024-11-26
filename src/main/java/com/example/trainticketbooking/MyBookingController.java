@@ -1,18 +1,153 @@
 package com.example.trainticketbooking;
 
+import comp.Rmi.model.CTHDDetailsDTO;
+import comp.Rmi.rmi.HoaDonService;
+import comp.Rmi.rmi.TicketService;
+import comp.Rmi.rmi.TrainService;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Label;
+import javafx.scene.control.ListCell;
 import javafx.scene.control.ListView;
+import javafx.scene.layout.HBox;
+import javafx.scene.layout.VBox;
+
+import java.rmi.registry.LocateRegistry;
+import java.rmi.registry.Registry;
+import java.util.List;
 
 public class MyBookingController {
 
     @FXML
-    private ListView myBookingListView;
+    private ListView<CTHDDetailsDTO> myBookingListView;
 
     // Các phương thức khác để xử lý logic của MyBooking.fxml
 
     @FXML
     public void initialize() {
         // Logic khởi tạo nếu cần
+        loadMyBookings();
     }
+    public void loadMyBookings() {
+        try {
+            // Lấy ID nhân viên từ Session
+            int nhanVienID = Session.getInstance().getNhanVien().getNhanVienID();
+
+            // Kết nối tới RMI registry
+            Registry registry = LocateRegistry.getRegistry(TrainListController.GlobalConfig.serverIP, 1099);
+            HoaDonService hoadonService = (HoaDonService) registry.lookup("HoaDonService");
+
+            // Gọi phương thức từ server để lấy danh sách hóa đơn
+            List<CTHDDetailsDTO> bookings = hoadonService.getHoaDonDetailsByNhanVienID(nhanVienID);
+
+            // Đổ dữ liệu vào ListView
+            ObservableList<CTHDDetailsDTO> observableList = FXCollections.observableArrayList(bookings);
+            myBookingListView.setItems(observableList);
+
+            // Cài đặt hiển thị tùy chỉnh cho ListView
+            myBookingListView.setCellFactory(param -> new ListCell<>() {
+                @Override
+                protected void updateItem(CTHDDetailsDTO item, boolean empty) {
+                    super.updateItem(item, empty);
+
+                    if (empty || item == null) {
+                        setText(null);
+                        setGraphic(null);
+                    } else {
+                        // Tạo giao diện tùy chỉnh
+                        VBox vbox = new VBox();
+                        vbox.setSpacing(5); // Khoảng cách giữa các dòng
+                        vbox.setStyle("-fx-background-color: #E6F2FF; -fx-padding: 10; -fx-border-color: #CCCCCC; -fx-border-radius: 5; -fx-background-radius: 5;");
+
+                        // Invoice ID và Ticket clerk
+                        Label invoiceLabel = new Label("Invoice ID: " + item.getHoadonID());
+                        Label ticketClerkLabel = new Label("Ticket clerk: " + item.getTenNhanVien());
+
+                        // Customer và Seat
+                        Label customerLabel = new Label("Customer: " + item.getTenKH());
+                        Label seatLabel = new Label("Seat: " + item.getSoGhe());
+
+                        // Train và Class
+                        Label trainLabel = new Label(item.getTenTau() + " - " + item.getLoaiGhe());
+                        trainLabel.setStyle("-fx-font-weight: bold;");
+
+                        // Date và Stations
+                        Label dateLabel = new Label("Date: " + item.getNgayKhoiHanh());
+                        Label routeLabel = new Label(item.getTenGaDi() + " -> " + item.getTenGaDen());
+
+                        // Thêm các nút Sửa và Xóa
+                        HBox buttonBox = new HBox();
+                        buttonBox.setSpacing(10); // Khoảng cách giữa các nút
+                        buttonBox.setStyle("-fx-alignment: center-right;");
+
+                        // Nút Sửa
+                        javafx.scene.control.Button editButton = new javafx.scene.control.Button("Sửa");
+                        editButton.setOnAction(event -> {
+                            // Xử lý logic sửa hóa đơn
+                            handleEditBooking(item);
+                        });
+
+                        // Nút Xóa
+                        javafx.scene.control.Button deleteButton = new javafx.scene.control.Button("Xóa");
+                        deleteButton.setStyle("-fx-background-color: #FFCCCC; -fx-text-fill: #333333;");
+                        deleteButton.setOnAction(event -> {
+                            // Xác nhận và xóa hóa đơn
+                            handleDeleteBooking(item);
+                        });
+
+                        // Thêm các nút vào HBox
+                        buttonBox.getChildren().addAll(editButton, deleteButton);
+
+                        // Thêm tất cả các thành phần vào VBox
+                        vbox.getChildren().addAll(invoiceLabel, ticketClerkLabel, customerLabel, seatLabel, trainLabel, dateLabel, routeLabel, buttonBox);
+
+                        // Đặt VBox làm giao diện hiển thị
+                        setGraphic(vbox);
+                    }
+                }
+            });
+
+        } catch (Exception e) {
+            e.printStackTrace();
+            // Hiển thị thông báo lỗi nếu kết nối RMI thất bại
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Error");
+            alert.setHeaderText("Failed to load bookings");
+            alert.setContentText("Could not connect to the server. Please try again later.");
+            alert.showAndWait();
+        }
+    }
+
+    // Hàm xử lý sự kiện sửa hóa đơn
+    private void handleEditBooking(CTHDDetailsDTO item) {
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        alert.setTitle("Edit Booking");
+        alert.setHeaderText(null);
+        alert.setContentText("Sửa hóa đơn ID: " + item.getHoadonID());
+        alert.showAndWait();
+        // Thực hiện logic sửa ở đây (ví dụ mở form sửa)
+    }
+
+    // Hàm xử lý sự kiện xóa hóa đơn
+    private void handleDeleteBooking(CTHDDetailsDTO item) {
+        Alert confirmation = new Alert(Alert.AlertType.CONFIRMATION);
+        confirmation.setTitle("Delete Booking");
+        confirmation.setHeaderText("Are you sure you want to delete this booking?");
+        confirmation.setContentText("Invoice ID: " + item.getHoadonID());
+
+        // Nếu người dùng xác nhận xóa
+        confirmation.showAndWait().ifPresent(response -> {
+            if (response == javafx.scene.control.ButtonType.OK) {
+                // Thực hiện logic xóa hóa đơn ở đây
+                System.out.println("Hóa đơn đã bị xóa: " + item.getHoadonID());
+            }
+        });
+    }
+
+
+
+
+
 }

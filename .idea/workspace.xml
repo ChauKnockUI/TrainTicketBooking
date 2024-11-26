@@ -5,11 +5,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="de87072b-561a-4f06-a61a-e967e7e098ce" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/trainticketbooking/MyBookingController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/trainticketbooking/TrainListController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/trainticketbooking/TrainListController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/com/example/trainticketbooking/MyBooking.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/com/example/trainticketbooking/MyBooking.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/com/example/trainticketbooking/search-trains.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/com/example/trainticketbooking/search-trains.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/trainticketbooking/MyBookingController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/trainticketbooking/MyBookingController.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -176,7 +173,7 @@
       <workItem from="1732293075930" duration="1266000" />
       <workItem from="1732341282264" duration="86000" />
       <workItem from="1732542191854" duration="6198000" />
-      <workItem from="1732600293330" duration="5142000" />
+      <workItem from="1732600293330" duration="8692000" />
     </task>
     <servers />
   </component>
