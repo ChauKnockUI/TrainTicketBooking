@@ -11,6 +11,6 @@ public interface TicketService extends Remote {
 
     boolean cancelTicket(int hoaDonID, int gheID) throws RemoteException;
 
-    CTHD modifyTicket(int cthdID, int newGheID, int newTauID, int newGaDi, int newGaDen, Date newNgayKhoiHanh,
-                      String newTenKH, String newDiaChi, String newSDT, float newGiaTien, int newNhanVienID) throws RemoteException;
+    boolean modifyTicket(int cthdID, int newGheID,
+                         String newTenKH, String newDiaChi, String newSDT, float newGiaTien, int newNhanVienID) throws RemoteException;
 }

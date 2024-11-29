@@ -26,8 +26,8 @@ public class TicketServiceImpl extends UnicastRemoteObject implements TicketServ
     }
 
     @Override
-    public CTHD modifyTicket(int cthdID, int newGheID, int newTauID, int newGaDi, int newGaDen, Date newNgayKhoiHanh, String newTenKH, String newDiaChi, String newSDT, float newGiaTien, int newNhanVienID) throws RemoteException {
-        return ticketDAO.modifyTicket(cthdID, newGheID, newTauID, newGaDi, newGaDen, newNgayKhoiHanh, newTenKH, newDiaChi, newSDT, newGiaTien, newNhanVienID);
+    public boolean modifyTicket(int cthdID, int newGheID, String newTenKH, String newDiaChi, String newSDT, float newGiaTien, int newNhanVienID) throws RemoteException {
+        return ticketDAO.modifyTicket(cthdID, newGheID,  newTenKH, newDiaChi, newSDT, newGiaTien, newNhanVienID);
     }
 
 

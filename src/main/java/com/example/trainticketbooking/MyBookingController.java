@@ -1,6 +1,7 @@
 package com.example.trainticketbooking;
 
 import comp.Rmi.model.CTHDDetailsDTO;
+import comp.Rmi.model.HoaDon;
 import comp.Rmi.rmi.HoaDonService;
 import comp.Rmi.rmi.TicketService;
 import comp.Rmi.rmi.TrainService;
@@ -128,20 +129,19 @@ public class MyBookingController {
 
     // Hàm xử lý sự kiện sửa hóa đơn
     private void handleEditBooking(CTHDDetailsDTO item) {
-        Alert alert = new Alert(Alert.AlertType.INFORMATION);
-        alert.setTitle("Edit Booking");
-        alert.setHeaderText(null);
-        alert.setContentText("Sửa hóa đơn ID: " + item.getHoadonID());
-        alert.showAndWait();
+
         // Thực hiện logic sửa ở đây (ví dụ mở form sửa)
         try{
+            Registry registry = LocateRegistry.getRegistry(TrainListController.GlobalConfig.serverIP, 1099);
+            HoaDonService hoadonService = (HoaDonService) registry.lookup("HoaDonService");
+            HoaDon hoaDon= hoadonService.findHoaDonByID(item.getHoadonID());
             FXMLLoader loader = new FXMLLoader(getClass().getResource("UpdateTrainBooking.fxml"));
             Parent root = loader.load();
 
             UpdateTrainBookingController controller = loader.getController();
             controller.setBookingDetails(
                     item.getHoadonID(), item.getTenNhanVien(), item.getTenKH(), item.getSoGhe(), item.getTauID(), item.getTenTau(),
-                    item.getLoaiGhe(), Date.valueOf(String.valueOf(item.getNgayKhoiHanh())), item.getTenGaDi(), item.getTenGaDen()
+                    item.getLoaiGhe(), Date.valueOf(String.valueOf(item.getNgayKhoiHanh())), item.getTenGaDi(), item.getTenGaDen(), hoaDon.diaChi, hoaDon.sdt, hoaDon.SoTien
             );
 
 

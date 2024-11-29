@@ -57,6 +57,7 @@ public class TrainBookingController {
     private TextField phoneCus;
     private Map<String, ToggleButton> seatButtonMap = new HashMap<>();
     private int selectedSeatsCount = 0; // Số ghế đã chọn
+    public int nvienID = Session.getInstance().getNhanVien().getNhanVienID();
     private Train trainM;
     private Carriage carriageM;
     public void initialize() {
@@ -80,7 +81,7 @@ public class TrainBookingController {
             String tenKH = nameCus.getText(); // Thay bằng thông tin từ giao diện
             String diaChi = addressCus.getText(); // Thay bằng thông tin từ giao diện
             String sdt = phoneCus.getText(); // Thay bằng thông tin từ giao diện
-            int nhanVienID = 1; // Thay bằng thông tin từ giao diện, ví dụ ID nhân viên phục vụ
+            int nhanVienID = nvienID; // Thay bằng thông tin từ giao diện, ví dụ ID nhân viên phục vụ
             // In thông tin từ client
          //   printClientInfo(tenKH, diaChi, sdt, nhanVienID, trainM, carriageM, seatButtonMap);
             // Gọi phương thức bookTickets để đặt vé

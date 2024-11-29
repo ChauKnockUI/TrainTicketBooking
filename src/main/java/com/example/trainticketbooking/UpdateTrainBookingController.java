@@ -1,9 +1,8 @@
 package com.example.trainticketbooking;
 
-import comp.Rmi.model.Carriage;
 import comp.Rmi.model.Seat;
-import comp.Rmi.model.Train;
 import comp.Rmi.rmi.SeatService;
+import comp.Rmi.rmi.TicketService;
 import javafx.fxml.FXML;
 import javafx.scene.Node;
 import javafx.scene.control.Label;
@@ -63,7 +62,9 @@ public class UpdateTrainBookingController {
     private Date ngayKhoiHanh;
     private String tenGaDi;
     private String tenGaDen;
-
+    private String address;
+    private String phone;
+    private float priceTotal;
     // Khởi tạo ban đầu
     @FXML
     public void initialize() {
@@ -123,7 +124,7 @@ public class UpdateTrainBookingController {
     }
 
     public void setBookingDetails(int hoadonID, String tenNhanVien, String tenKH, int soGhe, int tauID,
-                                  String tenTau, String loaiGhe, Date ngayKhoiHanh, String tenGaDi, String tenGaDen) {
+                                  String tenTau, String loaiGhe, Date ngayKhoiHanh, String tenGaDi, String tenGaDen, String diaChi, String sdt, float price) {
         this.hoadonID = hoadonID;
         this.tenNhanVien = tenNhanVien;
         this.tenKH = tenKH;
@@ -134,7 +135,9 @@ public class UpdateTrainBookingController {
         this.ngayKhoiHanh = ngayKhoiHanh;
         this.tenGaDi = tenGaDi;
         this.tenGaDen = tenGaDen;
-
+        this.address=diaChi;
+        this.phone=sdt;
+        this.priceTotal=price;
         // Hiển thị thông tin lên giao diện
         trainIdNameLabel.setText("Train: " + tenTau + " (ID: " + tauID + ")");
         carriageLabel.setText("Carriage: " + loaiGhe);
@@ -142,7 +145,9 @@ public class UpdateTrainBookingController {
         trainGaDiLabel.setText("Departure: " + tenGaDi);
         trainGaDenLabel.setText("Arrival: " + tenGaDen);
         nameCus.setText(tenKH);
-
+        addressCus.setText(address);
+        phoneCus.setText(phone);
+        tongTien.setText(String.valueOf(priceTotal));
         // Lấy dữ liệu ghế từ RMI
         try {
             Registry registry = LocateRegistry.getRegistry("172.20.10.4", 1099);
@@ -158,4 +163,70 @@ public class UpdateTrainBookingController {
             e.printStackTrace();
         }
     }
+    @FXML
+    private void update() {
+        try {
+            // Kết nối tới TicketService qua RMI
+            Registry registry = LocateRegistry.getRegistry(TrainListController.GlobalConfig.serverIP, 1099);
+            TicketService ticketService = (TicketService) registry.lookup("TicketService");
+
+            // Xác định ghế đã chọn (chỉ một ghế được phép chọn tại một thời điểm)
+            int newSeatID = -1;
+            for (Map.Entry<String, ToggleButton> entry : seatButtonMap.entrySet()) {
+                ToggleButton toggleButton = entry.getValue();
+                if (toggleButton.isSelected()) {
+                    Seat seat = (Seat) toggleButton.getUserData();
+                    newSeatID = seat.getGheID();
+                    break;
+                }
+            }
+
+            if (newSeatID == -1) {
+                System.out.println("Vui lòng chọn một ghế trước khi cập nhật.");
+                return;
+            }
+
+            // Lấy thông tin cập nhật từ giao diện
+            String newTenKH = nameCus.getText().trim();
+            String newDiaChi = addressCus.getText().trim();
+            String newSDT = phoneCus.getText().trim();
+
+            if (newTenKH.isEmpty() || newDiaChi.isEmpty() || newSDT.isEmpty()) {
+                System.out.println("Vui lòng điền đầy đủ thông tin khách hàng.");
+                return;
+            }
+
+            float newGiaTien = Float.parseFloat(tongTien.getText());
+
+
+            // Lấy ID nhân viên từ Session
+            int nhanVienID = Session.getInstance().getNhanVien().getNhanVienID();
+
+            // Gọi hàm modifyTicket trong TicketService để cập nhật thông tin
+            boolean isUpdated = ticketService.modifyTicket(
+                    hoadonID,      // ID hóa đơn
+                    newSeatID,     // ID ghế mới
+                           // ID tàu (giữ nguyên)
+
+
+                    newTenKH,      // Tên khách hàng
+                    newDiaChi,     // Địa chỉ khách hàng
+                    newSDT,        // Số điện thoại khách hàng
+                    newGiaTien,    // Giá tiền
+                    nhanVienID     // ID nhân viên
+            );
+
+            if (isUpdated) {
+                System.out.println("Cập nhật thành công!");
+            } else {
+                System.out.println("Cập nhật thất bại. Vui lòng thử lại.");
+            }
+        } catch (RemoteException | NotBoundException e) {
+            e.printStackTrace();
+            System.out.println("Có lỗi xảy ra khi kết nối tới TicketService.");
+        } catch (NumberFormatException e) {
+            System.out.println("Giá tiền không hợp lệ.");
+        }
+    }
+
 }

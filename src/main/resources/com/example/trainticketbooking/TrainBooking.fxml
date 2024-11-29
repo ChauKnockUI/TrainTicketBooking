@@ -27,7 +27,7 @@
                   <Separator prefHeight="48.0" prefWidth="62.0" />
                   <ImageView fitHeight="67.0" fitWidth="259.0" pickOnBounds="true" smooth="false">
                      <image>
-                        <Image url="@img/Metroway%20-%20Train%20Ticket%20booking%20website%20(Community)/Plugin/Metroway.png" />
+                        <Image url="@img/img/Metroway.png" />
                      </image>
                   </ImageView>
                   <Separator prefHeight="66.0" prefWidth="648.0" />

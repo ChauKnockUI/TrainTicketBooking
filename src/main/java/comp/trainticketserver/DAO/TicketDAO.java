@@ -189,7 +189,7 @@ public class TicketDAO {
         return isCanceled;
     }
 
-    public CTHD modifyTicket(int cthdID, int newGheID, int newTauID, int newGaDi, int newGaDen, Date newNgayKhoiHanh,
+    public boolean modifyTicket(int cthdID, int newGheID,
                              String newTenKH, String newDiaChi, String newSDT, float newGiaTien, int newNhanVienID) {
         Connection connection = null;
         CTHD updatedCTHD = null;
@@ -208,7 +208,7 @@ public class TicketDAO {
                 if (!rs.next()) {
                     // Nếu không tìm thấy chi tiết hóa đơn, không thể sửa vé
                     connection.rollback();
-                    return null;
+                    return false;
                 }
 
                 // Lấy ID của hóa đơn liên quan để cập nhật
@@ -229,27 +229,19 @@ public class TicketDAO {
                     // Kiểm tra nếu không cập nhật được hóa đơn
                     if (affectedRows == 0) {
                         connection.rollback();
-                        return null;
+                        return false;
                     }
                 }
 
-                String sqlUpdateCTHD = "UPDATE chitiethoadon SET GheID = ?, TauID = ?, GaDi = ?, GaDen = ?, NgayKhoiHanh = ? WHERE CTHDID = ?";
+                String sqlUpdateCTHD = "UPDATE chitiethoadon SET GheID = ? WHERE CTHDID = ?";
                 int affectedRows = 0;  // Declare the variable here
 
                 try (PreparedStatement psUpdateCTHD = connection.prepareStatement(sqlUpdateCTHD)) {
                     psUpdateCTHD.setInt(1, newGheID);
-                    psUpdateCTHD.setInt(2, newTauID);
-                    psUpdateCTHD.setInt(3, newGaDi);
-                    psUpdateCTHD.setInt(4, newGaDen);
 
-                    // Kiểm tra nếu ngày khởi hành là null
-                    if (newNgayKhoiHanh != null) {
-                        psUpdateCTHD.setDate(5, newNgayKhoiHanh);
-                    } else {
-                        psUpdateCTHD.setNull(5, Types.DATE);
-                    }
 
-                    psUpdateCTHD.setInt(6, cthdID);
+
+                    psUpdateCTHD.setInt(2, cthdID);
 
                     affectedRows = psUpdateCTHD.executeUpdate(); // Now we can use affectedRows
 
@@ -257,7 +249,7 @@ public class TicketDAO {
                     if (affectedRows == 0) {
                         connection.rollback();
                         System.out.println("Không tìm thấy hoặc không cập nhật được chi tiết hóa đơn với ID: " + cthdID);
-                        return null;  // Returning null if no rows were updated
+                        return false;  // Returning null if no rows were updated
                     }
                 } catch (SQLException e) {
                     e.printStackTrace();
@@ -269,11 +261,9 @@ public class TicketDAO {
                 updatedCTHD = new CTHD();
                 updatedCTHD.setCthdID(cthdID);
                 updatedCTHD.setGheID(newGheID);
-                updatedCTHD.setTauID(newTauID);
-                updatedCTHD.setGadiID(newGaDi);
-                updatedCTHD.setGadenID(newGaDen);
+
                 updatedCTHD.setHoadonID(hoaDonID);
-                updatedCTHD.setNgayKhoiHanh(newNgayKhoiHanh);
+
             }
 
             // Nếu tất cả các thao tác thành công, commit giao dịch
@@ -300,6 +290,6 @@ public class TicketDAO {
             }
         }
 
-        return updatedCTHD;
+        return true;
     }
 }
