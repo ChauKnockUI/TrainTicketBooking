@@ -7,15 +7,20 @@ import comp.Rmi.rmi.TrainService;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListCell;
 import javafx.scene.control.ListView;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
+import javafx.stage.Stage;
 
 import java.rmi.registry.LocateRegistry;
 import java.rmi.registry.Registry;
+import java.sql.Date;
 import java.util.Arrays;
 import java.util.List;
 
@@ -23,7 +28,8 @@ public class MyBookingController {
 
     @FXML
     private ListView<CTHDDetailsDTO> myBookingListView;
-
+    // Nút Sửa
+    javafx.scene.control.Button editButton = new javafx.scene.control.Button("Sửa");
     // Các phương thức khác để xử lý logic của MyBooking.fxml
 
     @FXML
@@ -83,8 +89,7 @@ public class MyBookingController {
                         buttonBox.setSpacing(10); // Khoảng cách giữa các nút
                         buttonBox.setStyle("-fx-alignment: center-right;");
 
-                        // Nút Sửa
-                        javafx.scene.control.Button editButton = new javafx.scene.control.Button("Sửa");
+
                         editButton.setOnAction(event -> {
                             // Xử lý logic sửa hóa đơn
                             handleEditBooking(item);
@@ -129,6 +134,25 @@ public class MyBookingController {
         alert.setContentText("Sửa hóa đơn ID: " + item.getHoadonID());
         alert.showAndWait();
         // Thực hiện logic sửa ở đây (ví dụ mở form sửa)
+        try{
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("UpdateTrainBooking.fxml"));
+            Parent root = loader.load();
+
+            UpdateTrainBookingController controller = loader.getController();
+            controller.setBookingDetails(
+                    item.getHoadonID(), item.getTenNhanVien(), item.getTenKH(), item.getSoGhe(), item.getTauID(), item.getTenTau(),
+                    item.getLoaiGhe(), Date.valueOf(String.valueOf(item.getNgayKhoiHanh())), item.getTenGaDi(), item.getTenGaDen()
+            );
+
+
+            Stage stage = (Stage) editButton.getScene().getWindow();
+            stage.setScene(new Scene(root));
+            stage.show();
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
+
+
     }
 
     // Hàm xử lý sự kiện xóa hóa đơn

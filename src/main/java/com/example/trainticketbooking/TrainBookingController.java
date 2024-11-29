@@ -82,37 +82,37 @@ public class TrainBookingController {
             String sdt = phoneCus.getText(); // Thay bằng thông tin từ giao diện
             int nhanVienID = 1; // Thay bằng thông tin từ giao diện, ví dụ ID nhân viên phục vụ
             // In thông tin từ client
-            printClientInfo(tenKH, diaChi, sdt, nhanVienID, trainM, carriageM, seatButtonMap);
+         //   printClientInfo(tenKH, diaChi, sdt, nhanVienID, trainM, carriageM, seatButtonMap);
             // Gọi phương thức bookTickets để đặt vé
             bookTickets(trainM, carriageM, tenKH, diaChi, sdt, nhanVienID);
         });
     }
-    private void printClientInfo(String tenKH, String diaChi, String sdt, int nhanVienID, Train train, Carriage carriage, Map<String, ToggleButton> seatButtonMap) {
-        System.out.println("Thông tin khách hàng:");
-        System.out.println("Tên khách hàng: " + tenKH);
-        System.out.println("Địa chỉ: " + diaChi);
-        System.out.println("Số điện thoại: " + sdt);
-        System.out.println("Nhân viên ID: " + nhanVienID);
-
-        System.out.println("\nThông tin tàu và toa:");
-        System.out.println("Tên tàu: " + train.getTenTau());
-        System.out.println("ID tàu: " + train.getTauID());
-        System.out.println("Tên toa: " + carriage.getTenToa());
-        System.out.println("ID toa: " + carriage.getToaID());
-
-        System.out.println("\nDanh sách ghế được chọn:");
-        for (Map.Entry<String, ToggleButton> entry : seatButtonMap.entrySet()) {
-            ToggleButton toggleButton = entry.getValue();
-            if (toggleButton.isSelected()) {
-                Seat seat = (Seat) toggleButton.getUserData();
-                if (seat != null) {
-                    System.out.println("Ghế ID: " + seat.getGheID() + ", Số ghế: " + seat.getSoGhe() + ", Loại ghế: " + seat.getLoaiGheID());
-                } else {
-                    System.out.println("Ghế chưa có thông tin: " + entry.getKey());
-                }
-            }
-        }
-    }
+//    private void printClientInfo(String tenKH, String diaChi, String sdt, int nhanVienID, Train train, Carriage carriage, Map<String, ToggleButton> seatButtonMap) {
+//        System.out.println("Thông tin khách hàng:");
+//        System.out.println("Tên khách hàng: " + tenKH);
+//        System.out.println("Địa chỉ: " + diaChi);
+//        System.out.println("Số điện thoại: " + sdt);
+//        System.out.println("Nhân viên ID: " + nhanVienID);
+//
+//        System.out.println("\nThông tin tàu và toa:");
+//        System.out.println("Tên tàu: " + train.getTenTau());
+//        System.out.println("ID tàu: " + train.getTauID());
+//        System.out.println("Tên toa: " + carriage.getTenToa());
+//        System.out.println("ID toa: " + carriage.getToaID());
+//
+//        System.out.println("\nDanh sách ghế được chọn:");
+//        for (Map.Entry<String, ToggleButton> entry : seatButtonMap.entrySet()) {
+//            ToggleButton toggleButton = entry.getValue();
+//            if (toggleButton.isSelected()) {
+//                Seat seat = (Seat) toggleButton.getUserData();
+//                if (seat != null) {
+//                    System.out.println("Ghế ID: " + seat.getGheID() + ", Số ghế: " + seat.getSoGhe() + ", Loại ghế: " + seat.getLoaiGheID());
+//                } else {
+//                    System.out.println("Ghế chưa có thông tin: " + entry.getKey());
+//                }
+//            }
+//        }
+//    }
 
     private void updateSelectedSeatsCount(boolean isSelected) {
         if (isSelected) {
