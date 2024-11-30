@@ -1,21 +1,32 @@
 package com.example.trainticketbooking.management;
 
 import java.io.IOException;
+import java.rmi.registry.LocateRegistry;
+import java.rmi.registry.Registry;
+import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
+import com.example.trainticketbooking.HoaDonListCell;
 import com.example.trainticketbooking.Session;
+import com.example.trainticketbooking.TrainListController;
+import comp.Rmi.model.HoaDon;
 import comp.Rmi.model.NhanVien;
+import comp.Rmi.rmi.HoaDonService;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.control.Label;
+import javafx.scene.control.ListView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
 
 public class HomeController {
-	
+    private Parent originalCenter; // Lưu trạng thái gốc
+
     @FXML
     private BorderPane bp;
 
@@ -23,55 +34,66 @@ public class HomeController {
     private AnchorPane ap;
 
     @FXML
-    void home(MouseEvent event) {
-    	bp.setCenter(ap);
+    private ListView<HoaDon> HomeSVListView;
+
+    @FXML
+    public void initialize() {
+        originalCenter = (Parent) bp.getCenter(); // Lưu trạng thái gốc của BorderPane Center
+        loadHomePage();
     }
+
+
+    @FXML
+    void home(MouseEvent event) {
+        if (bp.getCenter() != originalCenter) {
+            bp.setCenter(originalCenter); // Khôi phục giao diện Home
+        }
+        loadHomePage(); // Tải lại danh sách hóa đơn
+    }
+
 
     @FXML
     void page1(MouseEvent event) {
-    	loadPage("page1");
+        loadPage("page1");
     }
 
     @FXML
     void page2(MouseEvent event) {
-    	loadPage("page2");
+        loadPage("page2");
     }
 
     @FXML
     void page3(MouseEvent event) {
-    	loadPage("page3");
+        loadPage("page3");
     }
-    
+
     @FXML
     void page4(MouseEvent event) {
-    	loadPage("page4");
+        loadPage("page4");
     }
-    
+
     private void loadPage(String page) {
-    	Parent root = null;
-    	
-    	try {
-            root = FXMLLoader.load(getClass().getResource("/com/example/trainticketbooking/management/pages/" + page + ".fxml"));
-		} catch (IOException e) {
-			Logger.getLogger(HomeController.class.getName()).log(Level.SEVERE, null, e);
-		}
-    	
-    	bp.setCenter(root);
-    }
-    @FXML
-    private Label nameLabel;
-
-    @FXML
-    public void initialize() {
-        // Lấy thông tin nhân viên từ Session
-        NhanVien currentNhanVien = Session.getInstance().getNhanVien();
-
-        if (currentNhanVien != null) {
-            // Hiển thị tên nhân viên trong giao diện
-            nameLabel.setText("Chào mừng, " + currentNhanVien.getTen());
-        } else {
-            // Nếu không có thông tin, điều hướng về trang đăng nhập
-            System.out.println("Không có nhân viên trong phiên. Điều hướng về trang đăng nhập.");
+        try {
+            Parent root = FXMLLoader.load(getClass().getResource("/com/example/trainticketbooking/management/pages/" + page + ".fxml"));
+            bp.setCenter(root); // Thay thế nội dung của center
+        } catch (IOException e) {
+            e.printStackTrace();
         }
     }
+
+    private void loadHomePage() {
+        try {
+            Registry registry = LocateRegistry.getRegistry(TrainListController.GlobalConfig.serverIP, 1099);
+            HoaDonService hoadonService = (HoaDonService) registry.lookup("HoaDonService");
+
+            List<HoaDon> hoaDons = hoadonService.showAllHoaDon();
+            ObservableList<HoaDon> observableList = FXCollections.observableArrayList(hoaDons);
+
+            HomeSVListView.setItems(observableList); // Cập nhật ListView
+            HomeSVListView.setCellFactory(listView -> new HoaDonListCell());
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
 }
