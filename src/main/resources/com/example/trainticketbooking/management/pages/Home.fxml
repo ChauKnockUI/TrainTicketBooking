@@ -40,7 +40,7 @@
             </AnchorPane>
             <VBox layoutY="104.0" prefHeight="323.0" prefWidth="200.0">
                <children>
-                  <Pane id="studentMenuItem" onMouseClicked="#home" prefHeight="56.0" prefWidth="200.0" styleClass="leftSideMenuItem" stylesheets="@../css/application.css">
+                  <Pane id="studentMenuItem" fx:id="dashboardMenu" onMouseClicked="#home" prefHeight="56.0" prefWidth="200.0" styleClass="leftSideMenuItem" stylesheets="@../css/application.css">
                      <children>
                         <Pane layoutX="21.0" layoutY="16.0" prefHeight="29.0" prefWidth="32.0" styleClass="studentIcon" />
                         <Label layoutX="56.0" layoutY="17.0" styleClass="studentLabel" text="Dashboard">
@@ -50,7 +50,7 @@
                         </Label>
                      </children>
                   </Pane>
-                  <Pane onMouseClicked="#page1" prefHeight="56.0" prefWidth="200.0" styleClass="leftSideMenuItem">
+                  <Pane onMouseClicked="#page1" fx:id="transactionMenu" prefHeight="56.0" prefWidth="200.0" styleClass="leftSideMenuItem">
                      <children>
                         <Label layoutX="55.0" layoutY="16.0" stylesheets="@../css/application.css" text="Transactions">
                            <font>
@@ -64,7 +64,7 @@
                         <Pane layoutX="21.0" layoutY="19.0" prefHeight="29.0" prefWidth="32.0" styleClass="transactionIcon" />
                      </children>
                   </Pane>
-                  <Pane onMouseClicked="#page3" prefHeight="56.0" prefWidth="200.0" styleClass="leftSideMenuItem" stylesheets="@../css/application.css">
+                  <Pane onMouseClicked="#page3" fx:id="reportsMenu" prefHeight="56.0" prefWidth="200.0" styleClass="leftSideMenuItem" stylesheets="@../css/application.css">
                      <children>
                         <Label layoutX="55.0" layoutY="18.0" text="Reports">
                            <font>
@@ -78,7 +78,7 @@
                         <Pane layoutX="21.0" layoutY="18.0" prefHeight="29.0" prefWidth="32.0" styleClass="reportIcon" />
                      </children>
                   </Pane>
-                  <Pane onMouseClicked="#page4" prefHeight="56.0" prefWidth="200.0" styleClass="leftSideMenuItem" stylesheets="@../css/application.css">
+                  <Pane onMouseClicked="#page4" fx:id="adminsMenu" prefHeight="56.0" prefWidth="200.0" styleClass="leftSideMenuItem" stylesheets="@../css/application.css">
                      <children>
                         <Label layoutX="55.0" layoutY="18.0" text="Admins">
                            <font>

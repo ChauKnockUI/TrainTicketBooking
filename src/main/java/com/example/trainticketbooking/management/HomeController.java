@@ -23,6 +23,7 @@ import javafx.scene.control.ListView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
+import javafx.scene.layout.Pane;
 
 public class HomeController {
     private Parent originalCenter; // Lưu trạng thái gốc
@@ -36,41 +37,57 @@ public class HomeController {
     @FXML
     private ListView<HoaDon> HomeSVListView;
 
+    private Pane currentActivePane; // Lưu pane đang active
+    @FXML
+    private Pane dashboardMenu, transactionMenu, reportsMenu, adminsMenu;
+
     @FXML
     public void initialize() {
         originalCenter = (Parent) bp.getCenter(); // Lưu trạng thái gốc của BorderPane Center
         loadHomePage();
+        highlightMenuItem(null); // Đặt mặc định không có mục nào được active
+    }
+
+    // Phương thức để đặt trạng thái active
+    private void highlightMenuItem(Pane activePane) {
+        if (currentActivePane != null) {
+            currentActivePane.getStyleClass().remove("activeMenuItem");
+        }
+        if (activePane != null) {
+            activePane.getStyleClass().add("activeMenuItem");
+        }
+        currentActivePane = activePane;
     }
 
 
+    // Các handler sửa lại để gọi highlightMenuItem
     @FXML
     void home(MouseEvent event) {
         if (bp.getCenter() != originalCenter) {
-            bp.setCenter(originalCenter); // Khôi phục giao diện Home
+            bp.setCenter(originalCenter);
         }
-        loadHomePage(); // Tải lại danh sách hóa đơn
+        loadHomePage();
+        highlightMenuItem(dashboardMenu);
     }
-
 
     @FXML
     void page1(MouseEvent event) {
         loadPage("page1");
-    }
-
-    @FXML
-    void page2(MouseEvent event) {
-        loadPage("page2");
+        highlightMenuItem(transactionMenu);
     }
 
     @FXML
     void page3(MouseEvent event) {
         loadPage("page3");
+        highlightMenuItem(reportsMenu);
     }
 
     @FXML
     void page4(MouseEvent event) {
         loadPage("page4");
+        highlightMenuItem(adminsMenu);
     }
+
 
     private void loadPage(String page) {
         try {
