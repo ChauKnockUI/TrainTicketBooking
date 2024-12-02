@@ -27,7 +27,8 @@ import javafx.scene.layout.Pane;
 
 public class HomeController {
     private Parent originalCenter; // Lưu trạng thái gốc
-
+    @FXML
+    private Label nameLabel;
     @FXML
     private BorderPane bp;
 

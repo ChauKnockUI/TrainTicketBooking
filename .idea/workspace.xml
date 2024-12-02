@@ -6,8 +6,8 @@
   <component name="ChangeListManager">
     <list default="true" id="de87072b-561a-4f06-a61a-e967e7e098ce" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/trainticketbooking/HoaDonListCell.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/trainticketbooking/HoaDonListCell.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/example/trainticketbooking/management/HomeController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/trainticketbooking/management/HomeController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/com/example/trainticketbooking/management/css/application.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/com/example/trainticketbooking/management/css/application.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/com/example/trainticketbooking/management/pages/Home.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/com/example/trainticketbooking/management/pages/Home.fxml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -182,7 +182,8 @@
       <workItem from="1732872628897" duration="2602000" />
       <workItem from="1732890686202" duration="5129000" />
       <workItem from="1732971667439" duration="4012000" />
-      <workItem from="1732976548180" duration="3754000" />
+      <workItem from="1732976548180" duration="4442000" />
+      <workItem from="1733157491193" duration="1163000" />
     </task>
     <servers />
   </component>
