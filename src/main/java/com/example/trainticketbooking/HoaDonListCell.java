@@ -6,6 +6,7 @@ import javafx.scene.control.ListCell;
 import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
+import javafx.scene.text.FontWeight;
 import javafx.scene.text.Text;
 import javafx.scene.text.TextAlignment;
 
@@ -19,55 +20,58 @@ public class HoaDonListCell extends ListCell<HoaDon> {
     private Text thoiGian;
     private Text nhanVienID;
     private Text soTienText;
-    private StackPane soTienPane;
+    private VBox soTienBox;
 
     public HoaDonListCell() {
         super();
-        // Tạo các thành phần Text
-        hoadonID = new Text();
-        hoadonID.setFont(Font.font("Arial", 14));
-        hoadonID.setFill(Color.web("#2C3E50"));
 
-        tenKH = new Text();
-        tenKH.setFont(Font.font("Arial", 14));
-        tenKH.setFill(Color.web("#34495E"));
+        // Tạo các thành phần Text với thiết kế hiện đại
+        hoadonID = createText(14, "#2C3E50", true);
+        tenKH = createText(14, "#34495E", true);
+        diaChi = createText(12, "#7F8C8D", false);
+        sdt = createText(12, "#7F8C8D", false);
+        thoiGian = createText(12, "#7F8C8D", false);
+        nhanVienID = createText(12, "#7F8C8D", false);
 
-        diaChi = new Text();
-        diaChi.setFont(Font.font("Arial", 12));
-        diaChi.setFill(Color.web("#7F8C8D"));
-
-        sdt = new Text();
-        sdt.setFont(Font.font("Arial", 12));
-        sdt.setFill(Color.web("#7F8C8D"));
-
-        thoiGian = new Text();
-        thoiGian.setFont(Font.font("Arial", 12));
-        thoiGian.setFill(Color.web("#7F8C8D"));
-
-        nhanVienID = new Text();
-        nhanVienID.setFont(Font.font("Arial", 12));
-        nhanVienID.setFill(Color.web("#7F8C8D"));
-
-        // Tổng tiền với nền màu
+        // Tổng tiền với thiết kế nổi bật
         soTienText = new Text();
-        soTienText.setFont(Font.font("Arial", 16));
-        soTienText.setFill(Color.WHITE);
-        soTienText.setTextAlignment(TextAlignment.CENTER);
+        soTienText.setFont(Font.font("Arial", FontWeight.BOLD, 16));
+        soTienText.setFill(Color.web("#2ECC71"));
+        soTienText.setTextAlignment(TextAlignment.RIGHT);
 
-        soTienPane = new StackPane(soTienText);
-        soTienPane.setPadding(new Insets(5, 10, 5, 10));
-        soTienPane.setBackground(new Background(new BackgroundFill(Color.web("#2ECC71"), new CornerRadii(5), Insets.EMPTY)));
+        Text labelSoTien = new Text("Tổng tiền:");
+        labelSoTien.setFont(Font.font("Arial", 12));
+        labelSoTien.setFill(Color.web("#95A5A6"));
 
-        // Chi tiết hóa đơn
-        detailsBox = new VBox(5, hoadonID, tenKH, diaChi, sdt, thoiGian, nhanVienID);
-        detailsBox.setPadding(new Insets(10, 0, 0, 10));
+        soTienBox = new VBox(3, labelSoTien, soTienText);
+        soTienBox.setPadding(new Insets(8));
+        soTienBox.setBackground(new Background(new BackgroundFill(Color.web("#F4F6F7"), new CornerRadii(8), Insets.EMPTY)));
+        soTienBox.setBorder(new Border(new BorderStroke(Color.web("#D5DBDB"), BorderStrokeStyle.SOLID, new CornerRadii(8), BorderWidths.DEFAULT)));
 
-        // Tổng tiền
+        // Chi tiết hóa đơn với khoảng cách và căn chỉnh tốt hơn
+        detailsBox = new VBox(6, hoadonID, tenKH, diaChi, sdt, thoiGian, nhanVienID);
+        detailsBox.setPadding(new Insets(10, 0, 0, 15));
+
+        // Tổng tiền và khoảng cách
         Region spacer = new Region();
-        spacer.setPrefWidth(20);
-        content = new HBox(15, detailsBox, spacer, soTienPane);
-        content.setPadding(new Insets(10));
-        content.setStyle("-fx-background-color: #ECF0F1; -fx-border-color: #BDC3C7; -fx-border-radius: 10; -fx-background-radius: 10;");
+        HBox.setHgrow(spacer, Priority.ALWAYS);
+
+        content = new HBox(20, detailsBox, spacer, soTienBox);
+        content.setPadding(new Insets(12));
+        content.setStyle(
+                "-fx-background-color: white;" +
+                        "-fx-background-radius: 12;" +
+                        "-fx-effect: dropshadow(gaussian, rgba(0,0,0,0.1), 10, 0, 0, 4);" +
+                        "-fx-border-color: #E0E0E0;" +
+                        "-fx-border-radius: 12;"
+        );
+    }
+
+    private Text createText(int fontSize, String color, boolean isBold) {
+        Text text = new Text();
+        text.setFont(Font.font("Arial", isBold ? FontWeight.BOLD : FontWeight.NORMAL, fontSize));
+        text.setFill(Color.web(color));
+        return text;
     }
 
     @Override
@@ -86,6 +90,7 @@ public class HoaDonListCell extends ListCell<HoaDon> {
             thoiGian.setText("Thời Gian: " + hoaDon.getThoiGian());
             nhanVienID.setText("Nhân Viên: " + hoaDon.getNhanvienID());
             soTienText.setText(hoaDon.getSoTien() + " VND");
+
             setGraphic(content);
         }
     }

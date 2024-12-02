@@ -47,6 +47,15 @@ public class HomeController {
         originalCenter = (Parent) bp.getCenter(); // Lưu trạng thái gốc của BorderPane Center
         loadHomePage();
         highlightMenuItem(null); // Đặt mặc định không có mục nào được active
+        NhanVien currentNhanVien = Session.getInstance().getNhanVien();
+
+        if (currentNhanVien != null) {
+            // Hiển thị tên nhân viên trong giao diện
+            nameLabel.setText(currentNhanVien.getTen());
+        } else {
+            // Nếu không có thông tin, điều hướng về trang đăng nhập
+            System.out.println("Không có nhân viên trong phiên. Điều hướng về trang đăng nhập.");
+        }
     }
 
     // Phương thức để đặt trạng thái active
