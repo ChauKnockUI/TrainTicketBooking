@@ -82,7 +82,7 @@ public class HomeController {
 
     @FXML
     void page1(MouseEvent event) {
-        loadPage("page1");
+        loadPage("Page1");
         highlightMenuItem(transactionMenu);
     }
 
