@@ -11,4 +11,5 @@ public interface TrainService extends Remote {
     List<Train> searchTrains(Date departureDate, int departureStationId, int destinationStationId) throws RemoteException;
 
     List<Train> getAllTrains() throws RemoteException;
+    public boolean themTauVaGioTau(int tuyenID, String tenTau, int gaDi, int gaDen, String gioDi, String gioDen) throws RemoteException;
 }

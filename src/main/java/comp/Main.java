@@ -1,6 +1,7 @@
 package comp;
 
 import comp.Rmi.rmi.*;
+import comp.trainticketserver.DAO.AdminDAO;
 
 import java.rmi.Naming;
 import java.rmi.registry.LocateRegistry;
@@ -19,6 +20,7 @@ public class Main {
             HoaDonService hoaDonService = new HoaDonServiceImpl();
             LoginService loginService = new LoginServiceImpl();
             TicketService ticketService = new TicketServiceImpl();
+            TuyenService tuyenService = new TuyenServiceImpl();
 
             Naming.rebind("rmi://172.20.10.4:1099/TrainService", trainService);
             Naming.rebind("rmi://172.20.10.4:1099/CarriageService", carriageService);
@@ -28,7 +30,7 @@ public class Main {
             Naming.rebind("rmi://172.20.10.4:1099/HoaDonService", hoaDonService);
             Naming.rebind("rmi://172.20.10.4:1099/LoginService", loginService);
             Naming.rebind("rmi://172.20.10.4:1099/TicketService", ticketService);
-
+            Naming.rebind("rmi://172.20.10.4:1099/TuyenService", tuyenService);
 
             System.out.println("Service is running...");
 
