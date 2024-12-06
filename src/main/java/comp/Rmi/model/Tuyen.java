@@ -11,6 +11,12 @@ public class Tuyen implements Serializable {
     public Tuyen() {
     }
 
+    public Tuyen(int tuyenID, String ten, String huong) {
+        this.tuyenID = tuyenID;
+        this.ten = ten;
+        this.huong = huong;
+    }
+
     // Getters và Setters
     public int getTuyenID() {
         return tuyenID;
@@ -34,5 +40,10 @@ public class Tuyen implements Serializable {
 
     public void setHuong(String huong) {
         this.huong = huong;
+    }
+    @Override
+    public String toString() {
+        // Chỉ hiển thị tên tuyến trong ComboBox
+        return ten;
     }
 }

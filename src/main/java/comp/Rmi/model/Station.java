@@ -8,6 +8,15 @@ public class Station implements Serializable {
     private String diaChi;
     private String SDT;
 
+    public Station(String ten, int gaID) {
+        this.ten = ten;
+        GaID = gaID;
+    }
+
+    public Station() {
+
+    }
+
     public int getGaID() {
         return GaID;
     }
@@ -38,5 +47,10 @@ public class Station implements Serializable {
 
     public void setSDT(String SDT) {
         this.SDT = SDT;
+    }
+    @Override
+    public String toString() {
+        // Chỉ hiển thị tên tuyến trong ComboBox
+        return ten;
     }
 }

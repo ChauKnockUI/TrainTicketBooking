@@ -2,13 +2,16 @@ package com.example.trainticketbooking.management;
 
 import com.example.trainticketbooking.TrainListController;
 import comp.Rmi.model.Station;
+import comp.Rmi.model.Train;
 import comp.Rmi.model.Tuyen;
 import comp.Rmi.rmi.StationService;
+import comp.Rmi.rmi.TrainService;
 import comp.Rmi.rmi.TuyenService;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.DatePicker;
+import javafx.scene.control.TextField;
 
 import java.rmi.registry.LocateRegistry;
 import java.rmi.registry.Registry;
@@ -17,30 +20,42 @@ import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
 import java.util.List;
+import java.util.Map;
 
 
 public class Page1Controller {
     @FXML
-    private ComboBox<String> routeIdComboBox;
+    private ComboBox<Tuyen> routeIdComboBox;
 
     @FXML
-    private ComboBox<String> departureStationComboBox;
+    private ComboBox<Station> departureStationComboBox;
     @FXML
     private ComboBox<String> arrivalTimeComboBox;
 
     @FXML
-    private ComboBox<String> arrivalStationComboBox;
+    private ComboBox<Station> arrivalStationComboBox;
     @FXML
     private ComboBox<String> departureTimeComboBox;
     @FXML
     private DatePicker departureDatePicker;
    @FXML
     private DatePicker arrivalDatePicker;
+   @FXML
+   private ComboBox<Integer> trainIdComboBox;
+    @FXML
+    private TextField car1PriceField;
+    @FXML
+    private TextField car2PriceField;
+    @FXML
+    private TextField car3PriceField;
+    @FXML
+    private TextField trainNameField;
     @FXML
     public void initialize() {
         getTuyen();
         getGaDiVaGaDen();
         themGioVaoComboBox();
+        getTrainID();
     }
 
     public void getTuyen(){
@@ -54,7 +69,8 @@ public class Page1Controller {
 
             // Thêm các tuyến vào ComboBox
             for (Tuyen tuyen : tuyenList) {
-                routeIdComboBox.getItems().add(tuyen.getTen()); // Sử dụng phương thức getTuyenName() hoặc tên khác
+                Tuyen routeItem= new Tuyen(tuyen.getTuyenID(),tuyen.getTen(), tuyen.getHuong());
+                routeIdComboBox.getItems().add(routeItem); // Sử dụng phương thức getTuyenName() hoặc tên khác
             }
         } catch (Exception e) {
             e.printStackTrace();
@@ -71,9 +87,9 @@ public class Page1Controller {
 
             // Thêm danh sách ga vào hai ComboBox
             for (Station station : stations) {
-                String stationName = station.getTen(); // Giả sử Station có phương thức getStationName()
-                departureStationComboBox.getItems().add(stationName);
-                arrivalStationComboBox.getItems().add(stationName);
+                Station stationItem = new Station( station.getTen(), station.getGaID()); // Giả sử Station có phương thức getStationName()
+                departureStationComboBox.getItems().add(stationItem);
+                arrivalStationComboBox.getItems().add(stationItem);
             }
         } catch (Exception e) {
             e.printStackTrace();
@@ -108,22 +124,95 @@ public class Page1Controller {
             return null; // Trả về null nếu xảy ra lỗi
         }
     }
+    public void getTrainID(){
+        try {
+            // Kết nối tới RMI Registry
+            Registry registry = LocateRegistry.getRegistry(TrainListController.GlobalConfig.serverIP, 1099);
+            TrainService trainService = (TrainService) registry.lookup("TrainService");
+
+            // Lấy danh sách các tuyến
+            List<Train> trainList = trainService.getAllTrains();
+
+            // Thêm các tuyến vào ComboBox
+            for (Train train : trainList) {
+                trainIdComboBox.getItems().add(train.getTauID()); // Sử dụng phương thức getTuyenName() hoặc tên khác
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
     @FXML
     public void handleAddTrainButton(ActionEvent event) {
-        // Lấy ngày từ DatePicker
+        // Lấy dữ liệu từ giao diện
         LocalDate departureDate = departureDatePicker.getValue();
-        LocalDate arrivalDay = arrivalDatePicker.getValue();
-
-        // Lấy giờ từ ComboBox
+        LocalDate arrivalDate = arrivalDatePicker.getValue();
         String departureTime = departureTimeComboBox.getValue();
         String arrivalTime = arrivalTimeComboBox.getValue();
+        Tuyen tuyen = routeIdComboBox.getValue();
+        String trainName= trainNameField.getText();
+        Station departureStation = departureStationComboBox.getValue();
+        Station arrivalStation = arrivalStationComboBox.getValue();
+        int trainID = trainIdComboBox.getValue(); // ComboBox chứa trainID
 
-        // Chuyển ngày và giờ sang định dạng "yyyy-MM-dd HH:mm:ss"
+        // Chuyển đổi ngày giờ sang định dạng "yyyy-MM-dd HH:mm:ss"
         String departureDateTime = convertDateTime(departureDate, departureTime);
-        String arrivalDateTime = convertDateTime(arrivalDay, arrivalTime); // Giả sử cùng ngày
+        String arrivalDateTime = convertDateTime(arrivalDate, arrivalTime);
+        if (tuyen == null) {
+            System.out.println("Vui lòng chọn một tuyến!");
+            return;
+        }
+        try {
+            // Lấy giá từ các TextField cho từng toa
+            double car1Price = Double.parseDouble(car1PriceField.getText());
+            double car2Price = Double.parseDouble(car2PriceField.getText());
+            double car3Price = Double.parseDouble(car3PriceField.getText());
 
-        // In ra kết quả (có thể thay đổi logic để lưu vào cơ sở dữ liệu)
-        System.out.println("Departure DateTime: " + departureDateTime);
-        System.out.println("Arrival DateTime: " + arrivalDateTime);
+            // Tạo danh sách giá vé cho các toa
+            List<Map.Entry<Integer, Double>> toaPriceList = List.of(
+                    Map.entry(1, car1Price), // Toa 1
+                    Map.entry(2, car2Price), // Toa 2
+                    Map.entry(3, car3Price)  // Toa 3
+            );
+
+            // Kết nối tới RMI Registry
+            Registry registry = LocateRegistry.getRegistry(TrainListController.GlobalConfig.serverIP, 1099);
+            TrainService trainService = (TrainService) registry.lookup("TrainService");
+
+            // Gọi phương thức thêm tàu và giờ tàu
+            boolean successAddTrain = trainService.themTauVaGioTau(
+                    tuyen.getTuyenID(),
+                    trainName, // Tên tàu, có thể lấy từ giao diện nếu cần
+                    1,2,
+//                    getStationID(departureStation),
+//                    getStationID(arrivalStation),
+                    departureDateTime,
+                    arrivalDateTime
+            );
+
+            if (!successAddTrain) {
+                System.err.println("Thêm tàu thất bại!");
+                return;
+            }
+            System.out.println("Thêm tàu thành công!");
+
+//            // Gọi phương thức thêm giá tiền
+//            boolean successAddPrice = trainService.themGiaTien(
+//                    trainID,
+//                    toaPriceList,
+//                    1,2
+//            );
+//
+//            if (!successAddPrice) {
+//                System.err.println("Thêm giá tiền thất bại!");
+//                return;
+//            }
+//            System.out.println("Thêm giá tiền thành công!");
+
+        } catch (NumberFormatException e) {
+            System.err.println("Vui lòng nhập giá tiền hợp lệ cho các toa!");
+            e.printStackTrace();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 }
