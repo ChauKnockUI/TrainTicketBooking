@@ -15,6 +15,7 @@ public class TrainServiceImpl extends UnicastRemoteObject implements TrainServic
 
     public TrainServiceImpl() throws RemoteException {
         trainDAO = new TrainDAO();
+        adminDAO = new AdminDAO();
     }
 
     @Override
@@ -29,6 +30,15 @@ public class TrainServiceImpl extends UnicastRemoteObject implements TrainServic
 
     @Override
     public boolean themTauVaGioTau(int tuyenID, String tenTau, int gaDi, int gaDen, String gioDi, String gioDen) throws RemoteException {
+        if (adminDAO == null) {
+            throw new IllegalStateException("adminDAO chưa được khởi tạo.");
+        }
+        if (tenTau == null || tenTau.isEmpty()) {
+            throw new IllegalArgumentException("Tên tàu không được để trống.");
+        }
+        if (gioDi == null || gioDen == null) {
+            throw new IllegalArgumentException("Giờ đi và giờ đến không được để trống.");
+        }
         return adminDAO.themTauVaGioTau(tuyenID, tenTau, gaDi, gaDen, gioDi, gioDen);
     }
 

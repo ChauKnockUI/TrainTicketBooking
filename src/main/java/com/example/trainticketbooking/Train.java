@@ -1,6 +1,8 @@
 package com.example.trainticketbooking;
 
-public class Train {
+import java.io.Serializable;
+
+public class Train implements Serializable {
     private String name;
     private String time;
     private String price3A;

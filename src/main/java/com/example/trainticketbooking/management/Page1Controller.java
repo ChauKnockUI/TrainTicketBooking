@@ -4,6 +4,7 @@ import com.example.trainticketbooking.TrainListController;
 import comp.Rmi.model.Station;
 import comp.Rmi.model.Train;
 import comp.Rmi.model.Tuyen;
+import comp.Rmi.rmi.PriceService;
 import comp.Rmi.rmi.StationService;
 import comp.Rmi.rmi.TrainService;
 import comp.Rmi.rmi.TuyenService;
@@ -13,12 +14,17 @@ import javafx.scene.control.ComboBox;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.TextField;
 
+import java.rmi.AccessException;
+import java.rmi.NotBoundException;
+import java.rmi.RemoteException;
 import java.rmi.registry.LocateRegistry;
 import java.rmi.registry.Registry;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
+import java.util.AbstractMap;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
@@ -142,7 +148,7 @@ public class Page1Controller {
         }
     }
     @FXML
-    public void handleAddTrainButton(ActionEvent event) {
+    public void handleAddTrainButton(ActionEvent event) throws java.io.NotSerializableException {
         // Lấy dữ liệu từ giao diện
         LocalDate departureDate = departureDatePicker.getValue();
         LocalDate arrivalDate = arrivalDatePicker.getValue();
@@ -161,18 +167,22 @@ public class Page1Controller {
             System.out.println("Vui lòng chọn một tuyến!");
             return;
         }
+        if (departureStation == null || arrivalStation == null || trainName.isEmpty()) {
+            System.out.println("Vui lòng điền đầy đủ thông tin!");
+            return;
+        }
+
+        // In ra chi tiết lỗi
         try {
             // Lấy giá từ các TextField cho từng toa
             double car1Price = Double.parseDouble(car1PriceField.getText());
             double car2Price = Double.parseDouble(car2PriceField.getText());
             double car3Price = Double.parseDouble(car3PriceField.getText());
+            List<Map.Entry<Integer, Double>> toaPriceList = new ArrayList<>();
+            toaPriceList.add(new AbstractMap.SimpleEntry<>(1, car1Price));
+            toaPriceList.add(new AbstractMap.SimpleEntry<>(2, car2Price));
+            toaPriceList.add(new AbstractMap.SimpleEntry<>(3, car3Price));
 
-            // Tạo danh sách giá vé cho các toa
-            List<Map.Entry<Integer, Double>> toaPriceList = List.of(
-                    Map.entry(1, car1Price), // Toa 1
-                    Map.entry(2, car2Price), // Toa 2
-                    Map.entry(3, car3Price)  // Toa 3
-            );
 
             // Kết nối tới RMI Registry
             Registry registry = LocateRegistry.getRegistry(TrainListController.GlobalConfig.serverIP, 1099);
@@ -182,7 +192,7 @@ public class Page1Controller {
             boolean successAddTrain = trainService.themTauVaGioTau(
                     tuyen.getTuyenID(),
                     trainName, // Tên tàu, có thể lấy từ giao diện nếu cần
-                    1,2,
+                    departureStation.getGaID(), arrivalStation.getGaID(),
 //                    getStationID(departureStation),
 //                    getStationID(arrivalStation),
                     departureDateTime,
@@ -195,23 +205,28 @@ public class Page1Controller {
             }
             System.out.println("Thêm tàu thành công!");
 
-//            // Gọi phương thức thêm giá tiền
-//            boolean successAddPrice = trainService.themGiaTien(
-//                    trainID,
-//                    toaPriceList,
-//                    1,2
-//            );
-//
-//            if (!successAddPrice) {
-//                System.err.println("Thêm giá tiền thất bại!");
-//                return;
-//            }
-//            System.out.println("Thêm giá tiền thành công!");
+            PriceService priceService = (PriceService) registry.lookup("PriceService");
+            // Gọi phương thức thêm giá tiền
+            boolean successAddPrice = priceService.themGiaTien(
+                    trainID,
+                    toaPriceList,
+                    departureStation.getGaID(), arrivalStation.getGaID()
+            );
+
+            if (!successAddPrice) {
+                System.err.println("Thêm giá tiền thất bại!");
+                return;
+            }
+            System.out.println("Thêm giá tiền thành công!");
 
         } catch (NumberFormatException e) {
             System.err.println("Vui lòng nhập giá tiền hợp lệ cho các toa!");
             e.printStackTrace();
-        } catch (Exception e) {
+        } catch (AccessException e) {
+            e.printStackTrace();
+        } catch (NotBoundException e) {
+            e.printStackTrace();
+        } catch (RemoteException e) {
             e.printStackTrace();
         }
     }
