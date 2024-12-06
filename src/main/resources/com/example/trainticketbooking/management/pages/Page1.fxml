@@ -14,7 +14,7 @@
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.VBox?>
 
-<VBox fx:id="page1" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="650.0" prefWidth="840.0" spacing="20" styleClass="root" xmlns="http://javafx.com/javafx/23" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.trainticketbooking.management.Page1Controller">
+<VBox fx:id="page1" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="692.0" prefWidth="833.0" spacing="20" styleClass="root" xmlns="http://javafx.com/javafx/23" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.trainticketbooking.management.Page1Controller">
    <stylesheets>
       <URL value="@modern-styles.css" />
 
@@ -24,18 +24,31 @@
    </padding>
 
    <!-- Tiêu đề chính -->
-   <Label styleClass="title" text="Train Management System" />
+   <Label prefHeight="61.0" prefWidth="353.0" styleClass="title" text="Train Management System" />
 
    <!-- Form Thêm Tàu -->
-   <VBox spacing="20" styleClass="card">
-      <Label styleClass="card-title" text="Thêm Tàu" />
+   <VBox prefHeight="321.0" prefWidth="773.0" spacing="20" styleClass="card">
       <GridPane hgap="15" vgap="15">
          <ComboBox fx:id="routeIdComboBox" promptText="Select Route" GridPane.columnIndex="0" GridPane.rowIndex="0" />
          <TextField fx:id="trainNameField" promptText="Train Name" GridPane.columnIndex="1" GridPane.rowIndex="0" />
          <ComboBox fx:id="departureStationComboBox" promptText="Departure Station" GridPane.columnIndex="0" GridPane.rowIndex="1" />
          <ComboBox fx:id="arrivalStationComboBox" promptText="Arrival Station" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-         <DatePicker fx:id="departureDatePicker" promptText="Departure Date" GridPane.columnIndex="0" GridPane.rowIndex="2" />
-         <ComboBox fx:id="departureTimeComboBox" promptText="Departure Time" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+         <ComboBox fx:id="arrivalTimeComboBox" promptText="Arrival Time" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+         <HBox prefHeight="100.0" prefWidth="200.0" GridPane.rowIndex="3">
+            <children>
+               <Label prefHeight="53.0" prefWidth="80.0" styleClass="text-semi" stylesheets="@modern-styles.css" text="Arrival:" />
+               <Separator opacity="0.0" prefHeight="55.0" prefWidth="40.0" />
+               <DatePicker fx:id="arrivalDatePicker" promptText="Arrival Date" />
+            </children>
+         </HBox>
+         <HBox prefHeight="100.0" prefWidth="200.0" GridPane.rowIndex="2">
+            <children>
+               <Label prefHeight="55.0" prefWidth="107.0" styleClass="text-semi" stylesheets="@modern-styles.css" text="Departune:" />
+               <Separator opacity="0.0" prefHeight="55.0" prefWidth="12.0" />
+               <DatePicker fx:id="departureDatePicker" promptText="Departure Date" />
+            </children>
+         </HBox>
+         <ComboBox fx:id="departureTimeComboBox" prefHeight="53.0" prefWidth="143.0" promptText="Departure Time" GridPane.columnIndex="1" GridPane.rowIndex="2" />
          <columnConstraints>
             <ColumnConstraints percentWidth="50" />
             <ColumnConstraints percentWidth="50" />
@@ -44,12 +57,14 @@
             <RowConstraints />
             <RowConstraints />
             <RowConstraints />
+            <RowConstraints />
+            <RowConstraints minHeight="10.0" prefHeight="30.0" />
          </rowConstraints>
       </GridPane>
    </VBox>
 
    <!-- Form Giá Vé -->
-   <VBox spacing="20" styleClass="card">
+   <VBox prefHeight="216.0" prefWidth="780.0" spacing="20" styleClass="card">
       <Label styleClass="card-title" text="Bảng Giá" />
       <HBox spacing="15">
          <ComboBox fx:id="trainIdComboBox" promptText="Train ID" styleClass="dropdown" />
@@ -70,10 +85,10 @@
    </VBox>
    <HBox prefHeight="100.0" prefWidth="200.0">
       <children>
-         <Separator opacity="0.0" prefHeight="45.0" prefWidth="633.0" />
+         <Separator opacity="0.0" prefHeight="45.0" prefWidth="635.0" />
       
          <!-- Nút hành động -->
-         <Button onAction="#handleAddTrainButton" styleClass="primary-button" text="Add Train" />
+         <Button onAction="#handleAddTrainButton" prefHeight="45.0" prefWidth="131.0" styleClass="primary-button" text="Add Train" />
       </children>
    </HBox>
 </VBox>
