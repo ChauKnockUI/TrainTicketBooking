@@ -18,7 +18,6 @@ import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
 public class Page3Controller {
-
     @FXML private ComboBox<Integer> monthlyYearComboBox;
     @FXML private ComboBox<Integer> quarterlyYearComboBox;
     @FXML private ComboBox<Integer> yearlyRangeComboBox;
@@ -32,11 +31,11 @@ public class Page3Controller {
     @FXML private TableView<RevenueEntry> yearlyTable;
 
     @FXML private TableColumn<RevenueEntry, String> monthColumn;
-    @FXML private TableColumn<RevenueEntry, Float> monthRevenueColumn;
+    @FXML private TableColumn<RevenueEntry, Number> monthRevenueColumn;
     @FXML private TableColumn<RevenueEntry, String> quarterColumn;
-    @FXML private TableColumn<RevenueEntry, Float> quarterRevenueColumn;
-    @FXML private TableColumn<RevenueEntry, Integer> yearColumn;
-    @FXML private TableColumn<RevenueEntry, Float> yearRevenueColumn;
+    @FXML private TableColumn<RevenueEntry, Number> quarterRevenueColumn;
+    @FXML private TableColumn<RevenueEntry, Number> yearColumn;
+    @FXML private TableColumn<RevenueEntry, Number> yearRevenueColumn;
 
     private StatictisService statictisService;
 
@@ -79,11 +78,11 @@ public class Page3Controller {
 
     private void setupTableColumns() {
         monthColumn.setCellValueFactory(cellData -> cellData.getValue().periodProperty());
-        monthRevenueColumn.setCellValueFactory(cellData -> cellData.getValue().revenueProperty().asObject());
+        monthRevenueColumn.setCellValueFactory(cellData -> cellData.getValue().revenueProperty());
         quarterColumn.setCellValueFactory(cellData -> cellData.getValue().periodProperty());
-        quarterRevenueColumn.setCellValueFactory(cellData -> cellData.getValue().revenueProperty().asObject());
-        yearColumn.setCellValueFactory(cellData -> cellData.getValue().yearProperty().asObject());
-        yearRevenueColumn.setCellValueFactory(cellData -> cellData.getValue().revenueProperty().asObject());
+        quarterRevenueColumn.setCellValueFactory(cellData -> cellData.getValue().revenueProperty());
+        yearColumn.setCellValueFactory(cellData -> cellData.getValue().yearProperty());
+        yearRevenueColumn.setCellValueFactory(cellData -> cellData.getValue().revenueProperty());
     }
 
     private void setupEventListeners() {
@@ -154,9 +153,11 @@ public class Page3Controller {
 
     private void updateQuarterlyChart(Map<Integer, Float> quarterlyRevenue) {
         quarterlyChart.getData().clear();
-        quarterlyRevenue.forEach((quarter, revenue) ->
-                quarterlyChart.getData().add(new PieChart.Data("Q" + quarter, revenue))
-        );
+        quarterlyRevenue.forEach((quarter, revenue) -> {
+            PieChart.Data slice = new PieChart.Data("Q" + quarter, revenue);
+            quarterlyChart.getData().add(slice);
+            slice.getNode().setStyle("-fx-pie-color: " + getQuarterColor(quarter) + ";");
+        });
     }
 
     private void updateQuarterlyTable(Map<Integer, Float> quarterlyRevenue) {
@@ -189,6 +190,16 @@ public class Page3Controller {
         return java.time.Month.of(month).name();
     }
 
+    private String getQuarterColor(int quarter) {
+        switch (quarter) {
+            case 1: return "#E53935";
+            case 2: return "#43A047";
+            case 3: return "#FDD835";
+            case 4: return "#1E88E5";
+            default: return "#2196F3";
+        }
+    }
+
     private void showAlert(String title, String content) {
         Platform.runLater(() -> {
             Alert alert = new Alert(Alert.AlertType.ERROR);
@@ -199,5 +210,3 @@ public class Page3Controller {
         });
     }
 }
-
-

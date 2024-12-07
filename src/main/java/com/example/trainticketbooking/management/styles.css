@@ -1,0 +1,17 @@
+.chart-legend {
+    -fx-background-color: transparent;
+    -fx-padding: 20px;
+}
+
+.chart-legend-item {
+    -fx-text-fill: #000000;
+    -fx-font-size: 14px;
+}
+
+.chart-pie-label {
+    -fx-fill: #000000;
+}
+
+.chart-pie-label-line {
+    -fx-stroke: #000000;
+}
