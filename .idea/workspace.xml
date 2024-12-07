@@ -5,12 +5,11 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="de87072b-561a-4f06-a61a-e967e7e098ce" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/src/main/java/comp/Rmi/rmi/StatictisService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/comp/Rmi/rmi/StatictisServiceImpl.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/trainticketbooking/Train.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/trainticketbooking/Train.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/trainticketbooking/management/Page1Controller.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/trainticketbooking/management/Page1Controller.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/comp/Rmi/rmi/TrainServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/comp/Rmi/rmi/TrainServiceImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/com/example/trainticketbooking/management/pages/Home.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/com/example/trainticketbooking/management/pages/Home.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/com/example/trainticketbooking/management/pages/Page1.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/com/example/trainticketbooking/management/pages/Page1.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/comp/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/comp/Main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/comp/trainticketserver/DAO/AdminDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/comp/trainticketserver/DAO/AdminDAO.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -21,8 +20,8 @@
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="FxmlFile" />
-        <option value="Class" />
         <option value="CSS File" />
+        <option value="Class" />
       </list>
     </option>
   </component>
@@ -201,7 +200,8 @@
       <workItem from="1733415435749" duration="4322000" />
       <workItem from="1733458904964" duration="1211000" />
       <workItem from="1733472531864" duration="8931000" />
-      <workItem from="1733496060697" duration="622000" />
+      <workItem from="1733496060697" duration="1160000" />
+      <workItem from="1733578604279" duration="245000" />
     </task>
     <servers />
   </component>

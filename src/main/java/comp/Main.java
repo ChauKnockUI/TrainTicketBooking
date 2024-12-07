@@ -21,6 +21,7 @@ public class Main {
             LoginService loginService = new LoginServiceImpl();
             TicketService ticketService = new TicketServiceImpl();
             TuyenService tuyenService = new TuyenServiceImpl();
+            StatictisService statictisService = new StatictisServiceImpl();
 
             Naming.rebind("rmi://172.20.10.4:1099/TrainService", trainService);
             Naming.rebind("rmi://172.20.10.4:1099/CarriageService", carriageService);
@@ -31,6 +32,7 @@ public class Main {
             Naming.rebind("rmi://172.20.10.4:1099/LoginService", loginService);
             Naming.rebind("rmi://172.20.10.4:1099/TicketService", ticketService);
             Naming.rebind("rmi://172.20.10.4:1099/TuyenService", tuyenService);
+            Naming.rebind("rmi://172.20.10.4:1099/StatictisService", statictisService);
 
             System.out.println("Service is running...");
 

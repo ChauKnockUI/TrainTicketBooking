@@ -2,7 +2,9 @@ package comp.trainticketserver.DAO;
 import java.sql.*;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 public class AdminDAO {
@@ -144,5 +146,80 @@ public class AdminDAO {
                 }
             }
         }
+    }
+    public Map<Integer, Float> getDoanhThuTheoThang(int nam) {
+        Map<Integer, Float> doanhThuThang = new HashMap<>();
+        String query = "SELECT MONTH(ThoiGian) AS Thang, SUM(SoTien) AS DoanhThu " +
+                "FROM hoadon " +
+                "WHERE YEAR(ThoiGian) = ? " +
+                "GROUP BY MONTH(ThoiGian)";
+        try (Connection conn = DatabaseConnection.getConnection();
+             PreparedStatement stmt = conn.prepareStatement(query)) {
+            stmt.setInt(1, nam);
+            ResultSet rs = stmt.executeQuery();
+            // Khởi tạo tất cả 12 tháng với giá trị ban đầu là 0
+            for (int i = 1; i <= 12; i++) {
+                doanhThuThang.put(i, 0f);
+            }
+            while (rs.next()) {
+                int thang = rs.getInt("Thang");
+                float doanhThu = rs.getFloat("DoanhThu");
+                doanhThuThang.put(thang, doanhThu);  // Cập nhật doanh thu cho tháng tương ứng
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return doanhThuThang;
+    }
+    public Map<Integer, Float> getDoanhThuTheoQuy(int nam) {
+        Map<Integer, Float> doanhThuQuy = new HashMap<>();
+        String query = "SELECT QUARTER(ThoiGian) AS Quy, SUM(SoTien) AS DoanhThu " +
+                "FROM hoadon " +
+                "WHERE YEAR(ThoiGian) = ? " +
+                "GROUP BY QUARTER(ThoiGian)";
+        try (Connection conn = DatabaseConnection.getConnection();
+             PreparedStatement stmt = conn.prepareStatement(query)) {
+            stmt.setInt(1, nam);
+            ResultSet rs = stmt.executeQuery();
+            // Khởi tạo tất cả 4 quý với giá trị ban đầu là 0
+            for (int i = 1; i <= 4; i++) {
+                doanhThuQuy.put(i, 0f);
+            }
+            while (rs.next()) {
+                int quy = rs.getInt("Quy");
+                float doanhThu = rs.getFloat("DoanhThu");
+                doanhThuQuy.put(quy, doanhThu);  // Cập nhật doanh thu cho quý tương ứng
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return doanhThuQuy;
+    }
+    public Map<Integer, Float> getDoanhThuTheoNam(int soNam) {
+        Map<Integer, Float> doanhThuNam = new HashMap<>();
+        String query = "SELECT YEAR(ThoiGian) AS Nam, SUM(SoTien) AS DoanhThu " +
+                "FROM hoadon " +
+                "WHERE YEAR(ThoiGian) >= ? " +
+                "GROUP BY YEAR(ThoiGian)";
+        // Tính năm bắt đầu (5 năm trước)
+        int namHienTai = LocalDate.now().getYear();
+        int namBatDau = namHienTai - soNam + 1;
+        try (Connection conn = DatabaseConnection.getConnection();
+             PreparedStatement stmt = conn.prepareStatement(query)) {
+            stmt.setInt(1, namBatDau);
+            ResultSet rs = stmt.executeQuery();
+            // Khởi tạo tất cả các năm với giá trị ban đầu là 0
+            for (int i = namBatDau; i <= namHienTai; i++) {
+                doanhThuNam.put(i, 0f);
+            }
+            while (rs.next()) {
+                int nam = rs.getInt("Nam");
+                float doanhThu = rs.getFloat("DoanhThu");
+                doanhThuNam.put(nam, doanhThu);  // Cập nhật doanh thu cho năm tương ứng
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return doanhThuNam;
     }
 }
