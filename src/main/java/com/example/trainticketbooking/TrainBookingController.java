@@ -1,7 +1,6 @@
 package com.example.trainticketbooking;
 
-import comp.Rmi.model.Carriage;
-import comp.Rmi.model.Seat;
+import comp.Rmi.model.*;
 import comp.Rmi.model.Train;
 import comp.Rmi.rmi.SeatService;
 import javafx.fxml.FXML;
@@ -20,7 +19,6 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import comp.Rmi.rmi.TicketService;
-import comp.Rmi.model.CTHD;
 
 public class TrainBookingController {
 
@@ -48,7 +46,8 @@ public class TrainBookingController {
     private GridPane seatGridPane;
     @FXML
     private Button bookNow;
-
+    @FXML
+    private Label nameLabel;
     @FXML
     private TextField nameCus;
     @FXML
@@ -61,6 +60,15 @@ public class TrainBookingController {
     private Train trainM;
     private Carriage carriageM;
     public void initialize() {
+        NhanVien currentNhanVien = Session.getInstance().getNhanVien();
+
+        if (currentNhanVien != null) {
+            // Hiển thị tên nhân viên trong giao diện
+            nameLabel.setText(currentNhanVien.getTen());
+        } else {
+            // Nếu không có thông tin, điều hướng về trang đăng nhập
+            System.out.println("Không có nhân viên trong phiên. Điều hướng về trang đăng nhập.");
+        }
         // Gắn các ToggleButtons trong GridPane vào seatButtonMap theo ID
         for (Node node : seatGridPane.getChildren()) {
             if (node instanceof ToggleButton toggleButton) {

@@ -22,17 +22,16 @@
                         <Image url="@img/img/Metroway.png" />
                     </image>
                 </ImageView>
-                <Separator prefHeight="66.0" prefWidth="648.0" />
+                <Separator prefHeight="66.0" prefWidth="607.0" />
                 <Label prefHeight="64.0" prefWidth="83.0" text=" MyBooking" textAlignment="CENTER">
                     <font>
                         <Font name="Segoe UI Semibold" size="13.0" />
                     </font>
                 </Label>
-                <Button contentDisplay="RIGHT" mnemonicParsing="false" prefHeight="63.0" prefWidth="131.0" style="-fx-background-color: transperent;" stylesheets="@css.css" text="Login/Sign In" textAlignment="RIGHT" textFill="#0578ff">
+                <Label fx:id="nameLabel" prefHeight="64.0" prefWidth="135.0" text="Deafault Name" textAlignment="CENTER">
                     <font>
-                        <Font name="Segoe UI Bold" size="15.0" />
-                    </font>
-                </Button>
+                        <Font name="Segoe UI Semibold" size="13.0" />
+                    </font></Label>
             </children>
         </HBox>
     </top>

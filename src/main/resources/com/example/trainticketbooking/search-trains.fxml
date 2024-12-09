@@ -17,23 +17,23 @@
 
 <BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="812.0" prefWidth="1183.0" xmlns="http://javafx.com/javafx/23" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.trainticketbooking.TrainListController">
    <top>
-      <HBox prefHeight="76.0" prefWidth="1183.0" BorderPane.alignment="CENTER" >
+      <HBox prefHeight="76.0" prefWidth="1183.0" BorderPane.alignment="CENTER">
          <children>
             <Separator prefHeight="48.0" prefWidth="62.0" />
-            <ImageView fitHeight="67.0" fitWidth="259.0" pickOnBounds="true" smooth="false">
+            <ImageView fitHeight="76.0" fitWidth="259.0" pickOnBounds="true" smooth="false">
                <image>
-                  <Image url="@img/Metroway - Train Ticket booking website (Community)" />
+                  <Image url="@img/img/Metroway.png" />
                </image>
             </ImageView>
-            <Separator prefHeight="66.0" prefWidth="648.0" />
-            <Label fx:id="nameLabel" prefHeight="64.0" prefWidth="83.0" text="Deafault Name" textAlignment="CENTER">
-               <font>
-                  <Font name="Segoe UI Semibold" size="13.0" />
-               </font></Label>
-            <Button fx:id="myBookingUIButton" onAction="#onMyBookingButtonClick" contentDisplay="RIGHT" mnemonicParsing="false" prefHeight="63.0" prefWidth="131.0" style="-fx-background-color: transperent;" stylesheets="@css.css" text="MyBooking" textAlignment="RIGHT" textFill="#0578ff">
+            <Separator prefHeight="66.0" prefWidth="624.0" />
+            <Button fx:id="myBookingUIButton" contentDisplay="RIGHT" mnemonicParsing="false" onAction="#onMyBookingButtonClick" prefHeight="63.0" prefWidth="109.0" style="-fx-background-color: transperent;" stylesheets="@css.css" text="MyBooking" textAlignment="RIGHT" textFill="#0578ff">
                <font>
                   <Font name="Segoe UI Bold" size="15.0" />
                </font></Button>
+            <Label fx:id="nameLabel" prefHeight="64.0" prefWidth="153.0" text="Deafault Name" textAlignment="CENTER">
+               <font>
+                  <Font name="Segoe UI Semibold" size="13.0" />
+               </font></Label>
          </children>
       </HBox>
    </top>
@@ -64,7 +64,7 @@
             <HBox prefHeight="53.0" prefWidth="521.0">
                <children>
                   <Separator opacity="0.0" prefHeight="53.0" prefWidth="31.0" />
-                  <Button onAction="#onSearchButtonClick" mnemonicParsing="false" prefHeight="50.0" prefWidth="445.0" styleClass="primary-button" stylesheets="@css.css" text="Search for trains" textFill="WHITE">
+                  <Button mnemonicParsing="false" onAction="#onSearchButtonClick" prefHeight="50.0" prefWidth="445.0" styleClass="primary-button" stylesheets="@css.css" text="Search for trains" textFill="WHITE">
                      <font>
                         <Font name="Segoe UI Bold" size="21.0" />
                      </font>
@@ -114,7 +114,7 @@
                      <children>
                         <ImageView fitHeight="150.0" fitWidth="445.0" pickOnBounds="true" style="-fx-background-radius: 15px; -fx-border-radius: 15px;" styleClass="imageLabel">
                            <image>
-                              <Image url="@img/Metroway - Train Ticket booking website (Community)/Plugin/bia-ngang-kham-pha-ve-dep-thuy-si-mua-dong-va-hoa-minh-trong-buc-tranh-tuyet-xinh-dep-huyen.jpg" />
+                              <Image url="@img/img/bia-ngang-kham-pha-ve-dep-thuy-si-mua-dong-va-hoa-minh-trong-buc-tranh-tuyet-xinh-dep-huyen-bi.jpg" />
                            </image>
                         </ImageView>
                         <Button mnemonicParsing="false" prefHeight="152.0" prefWidth="446.0" styleClass="ad-button" stylesheets="@css.css" text="Train tourism packages  &gt;" textFill="WHITE">

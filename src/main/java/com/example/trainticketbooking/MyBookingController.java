@@ -2,6 +2,7 @@ package com.example.trainticketbooking;
 
 import comp.Rmi.model.CTHDDetailsDTO;
 import comp.Rmi.model.HoaDon;
+import comp.Rmi.model.NhanVien;
 import comp.Rmi.rmi.HoaDonService;
 import comp.Rmi.rmi.TicketService;
 import comp.Rmi.rmi.TrainService;
@@ -26,7 +27,8 @@ import java.util.Arrays;
 import java.util.List;
 
 public class MyBookingController {
-
+    @FXML
+    private Label nameLabel;
     @FXML
     private ListView<CTHDDetailsDTO> myBookingListView;
     // Nút Sửa
@@ -40,6 +42,15 @@ public class MyBookingController {
     }
     public void loadMyBookings() {
         try {
+            NhanVien currentNhanVien = Session.getInstance().getNhanVien();
+
+            if (currentNhanVien != null) {
+                // Hiển thị tên nhân viên trong giao diện
+                nameLabel.setText(currentNhanVien.getTen());
+            } else {
+                // Nếu không có thông tin, điều hướng về trang đăng nhập
+                System.out.println("Không có nhân viên trong phiên. Điều hướng về trang đăng nhập.");
+            }
             // Lấy ID nhân viên từ Session
             int nhanVienID = Session.getInstance().getNhanVien().getNhanVienID();
 
