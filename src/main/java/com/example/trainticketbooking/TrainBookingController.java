@@ -15,10 +15,13 @@ import java.rmi.NotBoundException;
 import java.rmi.RemoteException;
 import java.rmi.registry.LocateRegistry;
 import java.rmi.registry.Registry;
+import java.sql.SQLException;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import comp.Rmi.rmi.TicketService;
+
+import javax.swing.*;
 
 public class TrainBookingController {
 
@@ -202,6 +205,9 @@ public class TrainBookingController {
             Registry registry = LocateRegistry.getRegistry("172.20.10.4", 1099);
             TicketService ticketService = (TicketService) registry.lookup("TicketService");
 
+            // Biến đếm số ghế đặt thành công
+            int successCount = 0;
+
             // Duyệt qua các ToggleButton để tìm ghế đã chọn
             for (Map.Entry<String, ToggleButton> entry : seatButtonMap.entrySet()) {
                 ToggleButton toggleButton = entry.getValue();
@@ -210,37 +216,51 @@ public class TrainBookingController {
                     Seat seat = (Seat) toggleButton.getUserData(); // Lấy dữ liệu ghế từ UserData
 
                     if (seat != null) {
-                        // Tính giá tiền (giả định mỗi ghế giá 100)
-                        float giaTien = 100.0f;
+                        try {
+                            // Tính giá tiền (giả định mỗi ghế giá 100)
+                            float giaTien = 100.0f;
 
-                        // Gọi TicketService để đặt vé
-                        CTHD cthd = ticketService.bookTicket(
-                                seat.getGheID(),
-                                train.getTauID(),
-                                train.getGaDiID(),
-                                2,
-                                tenKH,
-                                diaChi,
-                                sdt,
-                                giaTien,
-                                nhanVienID
-                        );
+                            // Gọi TicketService để đặt vé
+                            CTHD cthd = ticketService.bookTicket(
+                                    seat.getGheID(),
+                                    train.getTauID(),
+                                    train.getGaDiID(),
+                                    2,
+                                    tenKH,
+                                    diaChi,
+                                    sdt,
+                                    giaTien,
+                                    nhanVienID
+                            );
 
-                        if (cthd != null) {
-                            System.out.println("Đặt vé thành công cho ghế: " + seat.getSoGhe());
-                            // Cập nhật trạng thái ghế sau khi đặt
-                            toggleButton.setStyle("-fx-background-color: #8596B3;");
-                            toggleButton.setDisable(true);
-                            toggleButton.setSelected(false);
-                        } else {
-                            System.out.println("Không thể đặt vé cho ghế: " + seat.getSoGhe());
+                            if (cthd != null) {
+                                System.out.println("Đặt vé thành công cho ghế: " + seat.getSoGhe());
+                                // Cập nhật trạng thái ghế sau khi đặt
+                                toggleButton.setStyle("-fx-background-color: #8596B3;");
+                                toggleButton.setDisable(true);
+                                toggleButton.setSelected(false);
+                                successCount++;
+                            } else {
+                                System.out.println("Không thể đặt vé cho ghế: " + seat.getSoGhe());
+                            }
+                        } catch (RemoteException e) {
+                            System.out.println("Lỗi kết nối tới TicketService.");
+                            e.printStackTrace();
                         }
-                    }
-                    else{
+                    } else {
                         System.out.println("Không thể lấy dữ liệu ghế từ ToggleButton: " + toggleButton.getId());
                         continue;
                     }
                 }
+            }
+
+            // Sau khi đặt vé, kiểm tra nếu không có ghế nào được đặt thành công
+            if (successCount > 0) {
+                JOptionPane.showMessageDialog(null, "Đã đặt thành công " + successCount + " ghế.",
+                        "Thành công", JOptionPane.INFORMATION_MESSAGE);
+            } else {
+                JOptionPane.showMessageDialog(null, "Ghế đã được hành khách khác chọn trước.",
+                        "Thông báo", JOptionPane.WARNING_MESSAGE);
             }
 
             // Sau khi đặt vé, đặt lại số lượng ghế được chọn và tổng tiền
@@ -250,6 +270,9 @@ public class TrainBookingController {
         } catch (RemoteException | NotBoundException e) {
             e.printStackTrace();
             System.out.println("Lỗi kết nối tới TicketService.");
+            JOptionPane.showMessageDialog(null, "Lỗi kết nối tới hệ thống. Vui lòng thử lại sau.",
+                    "Lỗi", JOptionPane.ERROR_MESSAGE);
         }
     }
+
 }
