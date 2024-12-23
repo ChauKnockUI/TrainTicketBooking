@@ -5,6 +5,7 @@ import comp.Rmi.rmi.SeatService;
 import comp.Rmi.rmi.TicketService;
 import javafx.fxml.FXML;
 import javafx.scene.Node;
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.control.ToggleButton;
@@ -49,6 +50,8 @@ public class UpdateTrainBookingController {
     private TextField addressCus;
     @FXML
     private TextField phoneCus;
+    @FXML
+    private Button cancleButton;
 
     private Map<String, ToggleButton> seatButtonMap = new HashMap<>();
     private int selectedSeatsCount = 0; // Số ghế đã chọn
@@ -80,6 +83,10 @@ public class UpdateTrainBookingController {
                 });
             }
         }
+        cancleButton.setOnAction(event -> {
+            // Thoát khỏi màn hình hiện tại
+            ((Node) (event.getSource())).getScene().getWindow().hide();
+        });
     }
 
     private void updateSelectedSeatsCount(boolean isSelected) {

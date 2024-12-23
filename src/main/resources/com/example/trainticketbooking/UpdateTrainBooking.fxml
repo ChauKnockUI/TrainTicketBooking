@@ -463,7 +463,7 @@
                         <Font name="Segoe UI Bold" size="17.0" />
                      </font>
                   </Button>
-                  <Button layoutX="34.0" layoutY="775.0" mnemonicParsing="false" prefHeight="44.0" prefWidth="599.0" style="-fx-background-color: transculent;" styleClass="primary-button" stylesheets="@css.css" text="Cancel" textFill="#ff6060">
+                  <Button layoutX="34.0" layoutY="775.0" mnemonicParsing="false" prefHeight="44.0" prefWidth="599.0" style="-fx-background-color: transculent;" styleClass="primary-button" stylesheets="@css.css" fx:id="cancleButton" text="Cancel" textFill="#ff6060">
                      <font>
                         <Font name="Segoe UI Semibold" size="17.0" />
                      </font>

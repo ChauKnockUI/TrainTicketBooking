@@ -5,10 +5,7 @@ import comp.Rmi.model.Train;
 import comp.Rmi.rmi.SeatService;
 import javafx.fxml.FXML;
 import javafx.scene.Node;
-import javafx.scene.control.Button;
-import javafx.scene.control.Label;
-import javafx.scene.control.TextField;
-import javafx.scene.control.ToggleButton;
+import javafx.scene.control.*;
 import javafx.scene.layout.GridPane;
 
 import java.rmi.NotBoundException;
@@ -20,6 +17,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import comp.Rmi.rmi.TicketService;
+import javafx.stage.Stage;
+import javafx.stage.StageStyle;
 
 import javax.swing.*;
 
@@ -244,11 +243,9 @@ public class TrainBookingController {
 
             // Sau khi đặt vé, kiểm tra nếu không có ghế nào được đặt thành công
             if (successCount > 0) {
-                JOptionPane.showMessageDialog(null, "Đã đặt thành công " + successCount + " ghế.",
-                        "Thành công", JOptionPane.INFORMATION_MESSAGE);
+                themVeThanhCongAlert.showSuccessAlert();
             } else {
-                JOptionPane.showMessageDialog(null, "Ghế đã được hành khách khác chọn trước.",
-                        "Thông báo", JOptionPane.WARNING_MESSAGE);
+                trungVeAlert.showSuccessAlert();
             }
 
             // Sau khi đặt vé, đặt lại số lượng ghế được chọn và tổng tiền
@@ -262,5 +259,58 @@ public class TrainBookingController {
                     "Lỗi", JOptionPane.ERROR_MESSAGE);
         }
     }
+    public class themVeThanhCongAlert {
 
+        public static void showSuccessAlert() {
+            Alert alert = new Alert(Alert.AlertType.INFORMATION, "Đặt vé thành công!", ButtonType.OK);
+            alert.setTitle("Thông báo");
+            alert.initStyle(StageStyle.UNDECORATED); // Loại bỏ viền cửa sổ
+            alert.setHeaderText("Thành công!");
+            alert.getDialogPane().setStyle(
+                    "-fx-background-color: #f6fafd; " +
+                            "-fx-border-color: #189AEC; " +
+                            "-fx-border-width: 2px; " +
+                            "-fx-font-size: 14px; " +
+                            "-fx-font-family: 'Arial';"
+            );
+
+            // Đổi màu nút OK
+            alert.getDialogPane().lookupButton(ButtonType.OK).setStyle(
+                    "-fx-background-color: #189AEC; " +
+                            "-fx-text-fill: white; " +
+                            "-fx-font-weight: bold;"
+            );
+
+            Stage stage = (Stage) alert.getDialogPane().getScene().getWindow();
+            stage.setAlwaysOnTop(true); // Đảm bảo hiển thị lên trước
+            alert.showAndWait();
+        }
+    }
+    public class trungVeAlert {
+
+        public static void showSuccessAlert() {
+            Alert alert = new Alert(Alert.AlertType.INFORMATION, "Ghế đã được hành khách khác chọn trước", ButtonType.OK);
+            alert.setTitle("Thông báo");
+            alert.initStyle(StageStyle.UNDECORATED); // Loại bỏ viền cửa sổ
+            alert.setHeaderText("Thành công!");
+            alert.getDialogPane().setStyle(
+                    "-fx-background-color: #f6fafd; " +
+                            "-fx-border-color: #189AEC; " +
+                            "-fx-border-width: 2px; " +
+                            "-fx-font-size: 14px; " +
+                            "-fx-font-family: 'Arial';"
+            );
+
+            // Đổi màu nút OK
+            alert.getDialogPane().lookupButton(ButtonType.OK).setStyle(
+                    "-fx-background-color: RED; " +
+                            "-fx-text-fill: white; " +
+                            "-fx-font-weight: bold;"
+            );
+
+            Stage stage = (Stage) alert.getDialogPane().getScene().getWindow();
+            stage.setAlwaysOnTop(true); // Đảm bảo hiển thị lên trước
+            alert.showAndWait();
+        }
+    }
 }

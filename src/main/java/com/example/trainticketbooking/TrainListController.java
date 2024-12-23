@@ -41,7 +41,7 @@ public class TrainListController {
     public class GlobalConfig {
 
         // Biến IP toàn cục
-        public static String serverIP = "172.20.10.4";
+        public static String serverIP = LoginController.GlobalConfig.serverIP;
     }
 
 
@@ -182,7 +182,7 @@ public class TrainListController {
             // Lấy thông tin từ các trường đầu vào (giả sử đã có các trường `departureDate`, `departureStationId`, `destinationStationId`)
             // Định dạng ngày từ chuỗi
 
-            Date departureDate = Date.valueOf(("2024-09-18"));
+            Date departureDate = Date.valueOf(("2024-12-25"));
             // Lấy ID của trạm khởi hành và trạm đến từ các ComboBox
             Station departureStation = fromComboBox.getSelectionModel().getSelectedItem();
             Station destinationStation = toComboBox.getSelectionModel().getSelectedItem();

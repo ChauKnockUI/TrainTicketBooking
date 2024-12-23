@@ -42,12 +42,13 @@
                     <children>
                         <HBox prefHeight="65.0" prefWidth="729.0">
                             <children>
-                                <Label prefHeight="58.0" prefWidth="256.0" text="  Availabel Booking">
+                        <Separator opacity="0.0" prefHeight="47.0" prefWidth="60.0" />
+                                <Label prefHeight="47.0" prefWidth="242.0" text="  Availabel Booking">
                                     <font>
                                         <Font name="Segoe UI Bold" size="26.0" />
                                     </font>
                                 </Label>
-                                <Separator opacity="0.0" prefHeight="58.0" prefWidth="813.0" />
+                                <Separator opacity="0.0" prefHeight="47.0" prefWidth="720.0" />
                                 <Button minWidth="45.0" mnemonicParsing="false" prefHeight="60.0" prefWidth="54.0" style="-fx-background-color: transperent;">
                                     <graphic>
                                         <ImageView fitHeight="39.0" fitWidth="46.0" pickOnBounds="true" preserveRatio="true">
@@ -74,11 +75,28 @@
                 <HBox prefHeight="655.0" prefWidth="662.0">
                     <children>
                   <Separator opacity="0.0" prefHeight="655.0" prefWidth="181.0" />
-                        <ListView fx:id="myBookingListView" prefHeight="655.0" prefWidth="954.0" />
+                        <ListView fx:id="myBookingListView" prefHeight="605.0" prefWidth="959.0" />
                         <Separator opacity="0.0" prefHeight="655.0" prefWidth="140.0" />
                     </children>
                 </HBox>
             </children>
         </VBox>
    </center>
+   <bottom>
+      <VBox prefHeight="55.0" prefWidth="1178.0" BorderPane.alignment="CENTER">
+         <children>
+            <Separator opacity="0.0" orientation="VERTICAL" prefHeight="55.0" prefWidth="1199.0" />
+            <HBox prefHeight="100.0" prefWidth="200.0">
+               <children>
+                  <Separator opacity="0.0" prefHeight="35.0" prefWidth="998.0" />
+                  <Button mnemonicParsing="false" prefHeight="35.0" prefWidth="76.0" styleClass="primary-button" stylesheets="@css.css" text="Cancel" fx:id="backButton" textFill="WHITE">
+                     <font>
+                        <Font name="System Bold" size="12.0" />
+                     </font></Button>
+               </children>
+            </HBox>
+            <Separator opacity="0.0" orientation="VERTICAL" prefHeight="45.0" prefWidth="1272.0" />
+         </children>
+      </VBox>
+   </bottom>
 </BorderPane>

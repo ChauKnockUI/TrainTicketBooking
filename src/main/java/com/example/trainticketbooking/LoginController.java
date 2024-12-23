@@ -31,7 +31,7 @@ public class LoginController {
     @FXML
     private Button loginButton;
     public class GlobalConfig {
-        public static final String serverIP = "172.20.10.5"; // Địa chỉ IP của server RMI
+        public static final String serverIP = "172.20.10.4"; // Địa chỉ IP của server RMI
     }
     @FXML
     public void handleLogin(ActionEvent event) {

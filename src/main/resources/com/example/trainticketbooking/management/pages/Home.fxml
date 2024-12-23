@@ -52,7 +52,7 @@
                   </Pane>
                   <Pane fx:id="transactionMenu" onMouseClicked="#page1" prefHeight="56.0" prefWidth="200.0" styleClass="leftSideMenuItem">
                      <children>
-                        <Label layoutX="55.0" layoutY="16.0" stylesheets="@../css/application.css" text="Transactions">
+                        <Label layoutX="55.0" layoutY="16.0" stylesheets="@../css/application.css" text="Add Train">
                            <font>
                               <Font name="Oswald Regular" size="16.0" />
                            </font>

@@ -163,7 +163,7 @@ public class Page3Controller {
     private void updateQuarterlyTable(Map<Integer, Float> quarterlyRevenue) {
         quarterlyTable.setItems(FXCollections.observableArrayList(
                 quarterlyRevenue.entrySet().stream()
-                        .map(entry -> new RevenueEntry("Q" + entry.getKey(), entry.getValue()))
+                        .map(entry -> new RevenueEntry("Qúy" + entry.getKey(), entry.getValue()))
                         .collect(Collectors.toList())
         ));
     }

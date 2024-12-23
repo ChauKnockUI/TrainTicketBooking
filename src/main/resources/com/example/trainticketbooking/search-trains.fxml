@@ -76,15 +76,15 @@
                <children>
                   <Separator opacity="0.0" prefHeight="79.0" prefWidth="23.0" />
                   <Button minWidth="35.0" mnemonicParsing="false" prefHeight="76.0" prefWidth="35.0" styleClass="button-navigator" stylesheets="@css.css" text="&lt;" />
-                  <ToggleButton minWidth="28.0" mnemonicParsing="false" prefHeight="77.0" prefWidth="54.0" styleClass="toggle-button" stylesheets="@css.css" text="Tue 15">
+                  <ToggleButton minWidth="28.0" mnemonicParsing="false" prefHeight="77.0" prefWidth="54.0" styleClass="toggle-button" stylesheets="@css.css" text="Sat 23">
                      <toggleGroup>
                         <ToggleGroup fx:id="dateToggleGroup" />
                      </toggleGroup>
                   </ToggleButton>
-                  <ToggleButton minWidth="37.0" mnemonicParsing="false" prefHeight="77.0" prefWidth="65.0" selected="true" styleClass="toggle-button" stylesheets="@css.css" text="Wed 16" textAlignment="CENTER" toggleGroup="$dateToggleGroup" />
-                  <ToggleButton minWidth="49.0" mnemonicParsing="false" prefHeight="77.0" prefWidth="49.0" styleClass="styleClass=&quot;toggle-button&quot;" stylesheets="@css.css" text="Thu 17" toggleGroup="$dateToggleGroup" />
-                  <ToggleButton minWidth="25.0" mnemonicParsing="false" prefHeight="78.0" prefWidth="54.0" styleClass="toggle-button" stylesheets="@css.css" text="Fri 18" toggleGroup="$dateToggleGroup" />
-                  <ToggleButton minWidth="48.0" mnemonicParsing="false" prefHeight="79.0" prefWidth="48.0" styleClass="toggle-button" stylesheets="@css.css" text="Sat 19" toggleGroup="$dateToggleGroup" />
+                  <ToggleButton minWidth="37.0" mnemonicParsing="false" prefHeight="77.0" prefWidth="65.0" selected="true" styleClass="toggle-button" stylesheets="@css.css" text="Sun 24" textAlignment="CENTER" toggleGroup="$dateToggleGroup" />
+                  <ToggleButton minWidth="49.0" mnemonicParsing="false" prefHeight="77.0" prefWidth="49.0" styleClass="styleClass=&quot;toggle-button&quot;" stylesheets="@css.css" text="Mon 25" toggleGroup="$dateToggleGroup" />
+                  <ToggleButton minWidth="25.0" mnemonicParsing="false" prefHeight="78.0" prefWidth="54.0" styleClass="toggle-button" stylesheets="@css.css" text="Tue 26" toggleGroup="$dateToggleGroup" />
+                  <ToggleButton minWidth="48.0" mnemonicParsing="false" prefHeight="79.0" prefWidth="48.0" styleClass="toggle-button" stylesheets="@css.css" text="Wed 27" toggleGroup="$dateToggleGroup" />
                   <Button minWidth="35.0" mnemonicParsing="false" prefHeight="76.0" prefWidth="35.0" styleClass="button-navigator" stylesheets="@css.css" text="&gt;" />
                </children>
             </HBox>

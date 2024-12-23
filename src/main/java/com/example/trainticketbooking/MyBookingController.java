@@ -12,10 +12,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Alert;
-import javafx.scene.control.Label;
-import javafx.scene.control.ListCell;
-import javafx.scene.control.ListView;
+import javafx.scene.control.*;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
@@ -34,12 +31,30 @@ public class MyBookingController {
     // Nút Sửa
     javafx.scene.control.Button editButton = new javafx.scene.control.Button("Sửa");
     // Các phương thức khác để xử lý logic của MyBooking.fxml
-
+    @FXML
+    private Button backButton;
     @FXML
     public void initialize() {
         // Logic khởi tạo nếu cần
         loadMyBookings();
+        backButton.setOnAction(event -> handleBackAction());
+
     }
+    @FXML
+    private void handleBackAction() {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/example/trainticketbooking/search-trains.fxml"));
+            Parent root = loader.load();
+
+            Stage stage = (Stage) backButton.getScene().getWindow();
+            stage.setScene(new Scene(root));
+            stage.show();
+        } catch (Exception e) {
+            e.printStackTrace();
+            showAlert(Alert.AlertType.ERROR, "Error", "Navigation Error", "Unable to go back to the previous screen.");
+        }
+    }
+
     public void loadMyBookings() {
         try {
             NhanVien currentNhanVien = Session.getInstance().getNhanVien();

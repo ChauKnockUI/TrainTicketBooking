@@ -27,7 +27,11 @@ import java.util.AbstractMap;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
-
+import javafx.scene.control.Alert;
+import javafx.scene.control.Alert.AlertType;
+import javafx.scene.control.ButtonType;
+import javafx.stage.Stage;
+import javafx.stage.StageStyle;
 
 public class Page1Controller {
     @FXML
@@ -147,6 +151,33 @@ public class Page1Controller {
             e.printStackTrace();
         }
     }
+    public class SimpleAlert {
+
+        public static void showSuccessAlert() {
+            Alert alert = new Alert(AlertType.INFORMATION, "Thêm tàu thành công!", ButtonType.OK);
+            alert.setTitle("Thông báo");
+            alert.initStyle(StageStyle.UNDECORATED); // Loại bỏ viền cửa sổ
+            alert.setHeaderText("Thành công!");
+            alert.getDialogPane().setStyle(
+                    "-fx-background-color: #f6fafd; " +
+                            "-fx-border-color: #189AEC; " +
+                            "-fx-border-width: 2px; " +
+                            "-fx-font-size: 14px; " +
+                            "-fx-font-family: 'Arial';"
+            );
+
+            // Đổi màu nút OK
+            alert.getDialogPane().lookupButton(ButtonType.OK).setStyle(
+                    "-fx-background-color: #189AEC; " +
+                            "-fx-text-fill: white; " +
+                            "-fx-font-weight: bold;"
+            );
+
+            Stage stage = (Stage) alert.getDialogPane().getScene().getWindow();
+            stage.setAlwaysOnTop(true); // Đảm bảo hiển thị lên trước
+            alert.showAndWait();
+        }
+    }
     @FXML
     public void handleAddTrainButton(ActionEvent event) throws java.io.NotSerializableException {
         // Lấy dữ liệu từ giao diện
@@ -218,7 +249,7 @@ public class Page1Controller {
                 return;
             }
             System.out.println("Thêm giá tiền thành công!");
-
+            SimpleAlert.showSuccessAlert();
         } catch (NumberFormatException e) {
             System.err.println("Vui lòng nhập giá tiền hợp lệ cho các toa!");
             e.printStackTrace();
