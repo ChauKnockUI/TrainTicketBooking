@@ -57,6 +57,12 @@ public class TrainBookingController {
     private TextField addressCus;
     @FXML
     private TextField phoneCus;
+    @FXML
+    private  Label clerkName;
+    @FXML
+    private Button 	cancleButton;
+    @FXML
+    private Button changeBoardButton;
     private Map<String, ToggleButton> seatButtonMap = new HashMap<>();
     private int selectedSeatsCount = 0; // Số ghế đã chọn
     public int nvienID = Session.getInstance().getNhanVien().getNhanVienID();
@@ -68,6 +74,7 @@ public class TrainBookingController {
         if (currentNhanVien != null) {
             // Hiển thị tên nhân viên trong giao diện
             nameLabel.setText(currentNhanVien.getTen());
+            clerkName.setText(currentNhanVien.getTen());
         } else {
             // Nếu không có thông tin, điều hướng về trang đăng nhập
             System.out.println("Không có nhân viên trong phiên. Điều hướng về trang đăng nhập.");
@@ -98,34 +105,15 @@ public class TrainBookingController {
             // Gọi phương thức bookTickets để đặt vé
             bookTickets(trainM, carriageM, tenKH, diaChi, sdt, nhanVienID);
         });
+        cancleButton.setOnAction(event -> {
+            // Thoát khỏi màn hình hiện tại
+            ((Node) (event.getSource())).getScene().getWindow().hide();
+        });
+        changeBoardButton.setOnAction(event -> {
+            // Thoát khỏi màn hình hiện tại
+            ((Node) (event.getSource())).getScene().getWindow().hide();
+        });
     }
-//    private void printClientInfo(String tenKH, String diaChi, String sdt, int nhanVienID, Train train, Carriage carriage, Map<String, ToggleButton> seatButtonMap) {
-//        System.out.println("Thông tin khách hàng:");
-//        System.out.println("Tên khách hàng: " + tenKH);
-//        System.out.println("Địa chỉ: " + diaChi);
-//        System.out.println("Số điện thoại: " + sdt);
-//        System.out.println("Nhân viên ID: " + nhanVienID);
-//
-//        System.out.println("\nThông tin tàu và toa:");
-//        System.out.println("Tên tàu: " + train.getTenTau());
-//        System.out.println("ID tàu: " + train.getTauID());
-//        System.out.println("Tên toa: " + carriage.getTenToa());
-//        System.out.println("ID toa: " + carriage.getToaID());
-//
-//        System.out.println("\nDanh sách ghế được chọn:");
-//        for (Map.Entry<String, ToggleButton> entry : seatButtonMap.entrySet()) {
-//            ToggleButton toggleButton = entry.getValue();
-//            if (toggleButton.isSelected()) {
-//                Seat seat = (Seat) toggleButton.getUserData();
-//                if (seat != null) {
-//                    System.out.println("Ghế ID: " + seat.getGheID() + ", Số ghế: " + seat.getSoGhe() + ", Loại ghế: " + seat.getLoaiGheID());
-//                } else {
-//                    System.out.println("Ghế chưa có thông tin: " + entry.getKey());
-//                }
-//            }
-//        }
-//    }
-
     private void updateSelectedSeatsCount(boolean isSelected) {
         if (isSelected) {
             selectedSeatsCount++;
@@ -182,7 +170,7 @@ public class TrainBookingController {
             trainTimeDenLabel.setText(dateTimeParts2[1]);
 
             try {
-                Registry registry = LocateRegistry.getRegistry("172.20.10.4", 1099);
+                Registry registry = LocateRegistry.getRegistry(TrainListController.GlobalConfig.serverIP, 1099);
                 SeatService seatService = (SeatService) registry.lookup("SeatService");
                 List<Seat> seats = seatService.getAllSeats(train.getTauID(), carriage.getToaID());
 
@@ -202,7 +190,7 @@ public class TrainBookingController {
     public void bookTickets(Train train, Carriage carriage, String tenKH, String diaChi, String sdt, int nhanVienID) {
         try {
             // Kết nối tới RMI để sử dụng TicketService
-            Registry registry = LocateRegistry.getRegistry("172.20.10.4", 1099);
+            Registry registry = LocateRegistry.getRegistry(TrainListController.GlobalConfig.serverIP, 1099);
             TicketService ticketService = (TicketService) registry.lookup("TicketService");
 
             // Biến đếm số ghế đặt thành công

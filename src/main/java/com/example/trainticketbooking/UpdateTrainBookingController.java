@@ -150,7 +150,7 @@ public class UpdateTrainBookingController {
         tongTien.setText(String.valueOf(priceTotal));
         // Lấy dữ liệu ghế từ RMI
         try {
-            Registry registry = LocateRegistry.getRegistry("172.20.10.4", 1099);
+            Registry registry = LocateRegistry.getRegistry(TrainListController.GlobalConfig.serverIP, 1099);
             SeatService seatService = (SeatService) registry.lookup("SeatService");
             List<Seat> seats = seatService.getAllSeats(tauID, 1); // Giả định ToaID là 1
 
