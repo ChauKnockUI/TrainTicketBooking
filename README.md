@@ -1,44 +1,69 @@
-# 🚂 Train Ticket Booking System 🎟️  
+# 🚆 Distributed Train Ticket Booking System (RMI)
 
-> **Hệ thống đặt vé tàu trực tuyến với giao diện JavaFX và giao tiếp qua RMI.**  
-> Quản lý hiệu quả thông tin chuyến tàu, toa tàu, ghế ngồi và trạng thái ghế trong thời gian thực.
-
----
-
-## 🌟 Tính năng nổi bật
-
-- 🕵️ **Tìm kiếm chuyến tàu** theo ga khởi hành và ga đến.  
-- 📅 **Hiển thị thông tin chi tiết** chuyến tàu: thời gian đi, đến và giá vé.  
-- 💺 **Quản lý ghế ngồi**: trạng thái (còn trống, đã đặt, đang chọn).  
-- 🔧 **Kiến trúc phân tán**: sử dụng RMI để đồng bộ dữ liệu giữa client và server.  
+A **distributed multi-server train ticket booking system** developed with **Java RMI**, implementing a **Client/Server architecture** and **MySQL Master-Master Replication** to ensure data consistency and prevent duplicate ticket sales across multiple servers.
 
 ---
 
-## 📂 Cấu trúc thư mục
+## ⚙️ Tech Stack
 
-```plaintext
-TrainTicketBooking/
-├── src/
-│   ├── main/
-│   │   ├── java/
-│   │   │   ├── controllers/     # Bộ điều khiển giao diện JavaFX
-│   │   │   ├── models/          # Lớp mô hình (Train, Seat, v.v.)
-│   │   │   ├── services/        # Interface và triển khai RMI
-│   │   │   └── utils/           # Các lớp tiện ích (kết nối RMI, xử lý dữ liệu)
-│   │   └── resources/
-│   │       └── fxml/            # File FXML cho giao diện
-├── tests/                       # Bộ kiểm thử
-└── README.md                    # Hướng dẫn dự án
+| Category | Technology |
+|-----------|-------------|
+| **Language** | Java 17 |
+| **GUI Framework** | JavaFX |
+| **Networking** | Java RMI |
+| **Database** | MySQL (Master-Master Replication) |
+| **Build Tool** | Maven |
+| **IDE** | IntelliJ IDEA |
+| **Operating Systems** | Windows / Ubuntu |
+
 ---
-```
-## 📦 Cài đặt
 
-### Yêu cầu hệ thống
+## 🧩 Features
 
-| Thành phần      | Phiên bản đề xuất |
-|------------------|-------------------|
-| **Java**         | 11 trở lên        |
-| **JavaFX**       | 17 trở lên        |
-| **MySQL Server** | 8.0 hoặc mới hơn |
+### 👩‍💼 Ticket Seller
+- Login / Logout  
+- Search train routes  
+- Book and cancel tickets  
+- Manage and view invoices  
+
+### 🧑‍💻 Administrator
+- Manage stations, routes, trains, and schedules  
+- Create and update train information  
+- View all invoices and revenue reports  
+
+### 🔄 System
+- Real-time data synchronization across multiple servers via MySQL replication  
+- Prevents seat duplication and data inconsistency  
+
+---
+
+## 🗄️ Database Overview
+
+**Main Tables:**  
+`hoadon`, `chitiethoadon`, `ga`, `tau`, `toa`, `ghe`, `loaighe`, `banggia`, `giotau`, `tuyen`, `nhanvien`
+
+> MySQL Master-Master Replication ensures all servers share consistent ticket data in real time.
+
+---
+
+## 🖼️ Demo Screenshots
+
+> *(Replace with your actual image paths if stored locally, e.g. `/images/` folder)*
+
+### 🔍 Train Search UI  
+![Train Search UI](https://github.com/user-attachments/assets/af9073be-5a46-4926-b014-66a0cbdb0271)
+
+### 💺 Seat Selection UI  
+![Seat Selection UI](https://github.com/user-attachments/assets/4d2bdbdf-866e-4224-9f6b-3824106c3319)
+
+### 🧾 Admin Dashboard  
+![Admin Dashboard](https://github.com/user-attachments/assets/68654e8d-6b2b-442d-bef6-6ee6c1037b17)
+
+### 🚆 Create Train (Admin)  
+![Admin Create Train](https://github.com/user-attachments/assets/41b7e79c-adfb-45e9-a42d-a2948111da1c)
+
+### 📊 Revenue Statistics  
+![Admin Statistic 1](https://github.com/user-attachments/assets/4b49d07f-b056-49db-a69e-29553f4bcd5b)  
+![Admin Statistic 2](https://github.com/user-attachments/assets/acd82fd4-422a-4325-bab2-e3d7a7c123a5)
 
 ---
